@@ -51,9 +51,72 @@ body {
 }
 
 /* Na mniejszych ekranach można je nieco zmniejszyć */
+/* Poprawki dla urządzeń mobilnych */
 @media (max-width: 768px) {
-    #logo img {
-        max-height: 45px;   /* Mniejsze logo dla lepszego dopasowania w pionowym menu */
+    /* Menu mobilne */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--dark);
+        transition: 0.3s;
+    }
+
+    .nav-links {
+        display: none; /* Ukryte domyślnie */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        padding: 20px;
+        box-shadow: var(--shadow);
+        text-align: center;
+        gap: 15px;
+    }
+
+    .nav-links.active {
+        display: flex; /* Pokazuje po kliknięciu */
+    }
+
+    /* Poprawa sekcji Hero (zdjęcie pod tekstem) */
+    #hero {
+        padding: 40px 0;
+        background-image: none; /* Usuwamy tło funky-lines jeśli utrudnia czytanie */
+        background-color: var(--light);
+    }
+
+    .hero-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text ul {
+        display: inline-block;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    /* Dopasowanie tabeli cen na telefonie */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 }
 
