@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <title>Rozkład Jazdy - Pas-Trans Marcin Pastuch</title>
+    <meta name="description" content="Sprawdź aktualny rozkład jazdy autobusów Pas-Trans." />
+    
+    <link rel="stylesheet" href="../style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/fontello.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Dodatkowe style dla kafelków rozkładu */
+        .rozklad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        .rozklad-card {
+            background-color: #f4f4f4;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            border-bottom: 5px solid #ffcc00; /* Kolor przewodni */
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 250px;
+        }
+        .rozklad-card:hover {
+            transform: translateY(-10px);
+            background-color: #eee;
+        }
+        .rozklad-card h3 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .rozklad-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="menu">
+    <div class="container menu-flex">
+        <div id="logo">
+            <img src="../logo.png" alt="Logo Pas-Trans">
+        </div>
+        <button class="menu-toggle" aria-label="Otwórz menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+         <ul class="nav-links">
+    <li><a href="../index.html">STRONA GŁÓWNA</a></li>
+    <li><a href="#kontakt">KONTAKT</a></li>
+</ul>
+    </div>
+    </nav>
+
+    <main class="container" style="margin-top: 120px; min-height: 60vh;">
+        <h2 class="section-title">Rozkład Jazdy</h2>
+        <p class="rozklad-subtitle">Prosimy wybrać trasę, aby wyświetlić szczegółowy rozkład jazdy w formacie PDF:</p>
+
+        <div class="rozklad-grid">
+            <a href="MiloszowLuban.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="rozklad-card">
+                    <h3>Miłoszów – Leśna – Gryfów – Biedrzychowice – Lubań</h3>
+                    <span class="btn">Otwórz PDF</span>
+                </div>
+            </a>
+
+            <a href="ZgorzelecGryfow.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="rozklad-card">
+                    <h3>Zgorzelec – Sulików – Lubań – Olszyna – Gryfów Śląski</h3>
+                    <span class="btn">Otwórz PDF</span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer id="kontakt">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <h3>Kontakt</h3>
+                <div class="contact-item">
+                    <i class="icon-phone"></i>
+                    <div class="phone-numbers">
+                        <a href="tel:796339661">+48 796 339 661</a>
+                        <a href="tel:665339661">+48 665 339 661</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="icon-mail"></i>
+                    <a href="mailto:wioletapastuch@gmail.com">wioletapastuch@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="icon-facebook"></i>
+                    <a href="https://www.facebook.com/people/Autokary-Pas-Trans/61564448867373/" target="_blank">facebook.com/Autokary-Pas-Trans</a>
+                </div>
+            </div>
+            <div class="footer-office">
+            <h3>Biuro</h3>
+            <p>Czynne codziennie: 6:00 - 21:00</p>
+            <p><i class="icon-location"></i> ul. Spacerowa 15, 59-620 Gryfów Śląski</p>
+            
+            <h3 style="margin-top: 20px;">Dane do faktury</h3>
+            <p><strong>Pas-Trans MARCIN PASTUCH</strong></p>
+            <p>ul. Gliniana 28</p>
+            <p>59-620 Gryfów Śląski</p>
+            <p><strong>NIP:</strong> 6161435054</p>
+            <p><strong>REGON:</strong> 366617872</p>
+        </div>
+        </div>
+        <div class="copyright">
+            Copyright © Pas-Trans MARCIN PASTUCH | Projekt: matrixdesigndub
+        </div>
+    </footer>
+
+    <script src="../js/scripts.js"></script>
+</body>
+</html>
