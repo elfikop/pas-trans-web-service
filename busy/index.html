@@ -1,6 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PV4Y1JJETK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PV4Y1JJETK');
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <title>Wypożyczalnia Busów 9-osobowych - Pas-Trans</title>
@@ -69,8 +79,11 @@
             <span></span>
         </button>
         <ul class="nav-links">
-            <li><a href="../index.html">STRONA GŁÓWNA</a></li>
-            <li><a href="#oferta-bus">OFERTA</a></li> 
+            <li><a href="../">STRONA GŁÓWNA</a></li>
+            <li><a href="#oferta-bus">OFERTA BUSY</a></li>
+            <li><a href="../#opinie">OPINIE</a></li>
+            <li><a href="../#galeria-slider">GALERIA</a></li> 
+            <li><a href="../nasza-flota/">NASZA FLOTA</a></li>
             <li><a href="#kontakt">KONTAKT</a></li>
         </ul>
     </div>
@@ -141,7 +154,7 @@
         </div>
 
         <section class="container">
-    <div class="cta-section">
+    <div id="kontakt" class="cta-section">
         <h2 style="color: white; margin-bottom: 10px;">Zapraszamy do bezpłatnej wyceny</h2>
         <p style="color: rgba(255,255,255,0.9);">Szybki kontakt telefoniczny lub mailowy:</p>
         
@@ -162,7 +175,7 @@
 </section>
     </main>
 
-    <footer id="kontakt">
+    <footer id="stopka">
     <div class="container footer-rework">
         <div class="footer-left">
             <div id="logo-footer">
@@ -193,5 +206,9 @@
 </footer>
 
     <script src="../js/scripts.js"></script>
+
+<a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
+    <i class="icon-phone"></i>
+</a> 
 </body>
 </html>

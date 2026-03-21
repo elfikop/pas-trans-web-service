@@ -1,5 +1,5 @@
 /**
- * PAS-TRANS - Scripts
+ * PAS-TRANS - Scripts 2026
  */
 
 // --- OBSŁUGA MENU MOBILNEGO ---
@@ -10,14 +10,12 @@ function initMobileMenu() {
     if (menuToggle && navLinks) {
         // Otwieranie/Zamykanie po kliknięciu w hamburger
         menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Zapobiega propagacji do document.click
+            e.stopPropagation();
             navLinks.classList.toggle('active');
-            
-            // Opcjonalnie: zmiana animacji hamburgera, jeśli masz klasę .is-active
             menuToggle.classList.toggle('is-active');
         });
 
-        // Zamknij menu po kliknięciu w konkretny link (ważne na mobile)
+        // Zamknij menu po kliknięciu w konkretny link
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -26,7 +24,7 @@ function initMobileMenu() {
             });
         });
 
-        // Zamknij menu po kliknięciu gdziekolwiek POZA menu i przyciskiem
+        // Zamknij menu po kliknięciu gdziekolwiek poza nim
         document.addEventListener('click', (e) => {
             const isClickInsideMenu = navLinks.contains(e.target);
             const isClickOnToggle = menuToggle.contains(e.target);
@@ -41,15 +39,16 @@ function initMobileMenu() {
 
 // --- SEKCJA SLIDERA ---
 let slideIndex = 0;
-const slides = document.querySelectorAll('.slide');
-const dotsContainer = document.getElementById('dotsContainer');
 
 function initSlider() {
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('dotsContainer');
+
     if (slides.length === 0) return;
 
-    // Tworzenie kropek (dots) jeśli kontener istnieje
+    // Tworzenie kropek (dots)
     if (dotsContainer) {
-        dotsContainer.innerHTML = ''; // Czyścimy na wszelki wypadek
+        dotsContainer.innerHTML = ''; 
         slides.forEach((_, i) => {
             const dot = document.createElement('span');
             dot.classList.add('dot');
@@ -58,38 +57,52 @@ function initSlider() {
         });
     }
 
-    // Pokaż pierwszy slajd
+    // Pierwsze uruchomienie
     showSlide(0);
-
-    // Opcjonalnie: Automatyczne przewijanie co 5 sekund
-    // setInterval(() => changeSlide(1), 5000);
 }
 
 function showSlide(n) {
+    const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
+    
     if (slides.length === 0) return;
 
     if (n >= slides.length) slideIndex = 0;
     else if (n < 0) slideIndex = slides.length - 1;
     else slideIndex = n;
 
-    // Usuwanie klas active ze wszystkich slajdów i kropek
     slides.forEach(slide => slide.classList.remove('active'));
-    if (dots.length > 0) {
-        dots.forEach(dot => dot.classList.remove('active'));
-    }
+    dots.forEach(dot => dot.classList.remove('active'));
 
-    // Dodawanie klasy active do aktualnego
-    if (slides[slideIndex]) {
-        slides[slideIndex].classList.add('active');
-    }
-    if (dots[slideIndex]) {
-        dots[slideIndex].classList.add('active');
-    }
+    if (slides[slideIndex]) slides[slideIndex].classList.add('active');
+    if (dots[slideIndex]) dots[slideIndex].classList.add('active');
 }
 
-function changeSlide(n) {
+// Funkcja globalna dla przycisków HTML (onclick="changeSlide")
+window.changeSlide = function(n) {
     showSlide(slideIndex + n);
+};
+
+// --- INTELIGENTNY PRZYCISK TELEFONU (PC: Scroll / Mobile: Call) ---
+function initFloatingPhone() {
+    const phoneBtn = document.querySelector('.floating-phone-btn');
+    
+    if (phoneBtn) {
+        phoneBtn.addEventListener('click', function(e) {
+            // Jeśli szerokość ekranu jest większa niż 768px (Desktop)
+            if (window.innerWidth > 768) {
+                const targetSection = document.querySelector('#kontakt');
+                
+                if (targetSection) {
+                    e.preventDefault(); // Blokuje próbę dzwonienia przez system
+                    targetSection.scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                }
+            }
+            // Na mobile (<= 768px) skrypt nie przerywa działania - przeglądarka normalnie dzwoni
+        });
+    }
 }
 
 // --- SEKCJA AKTUALNOŚCI ---
@@ -99,7 +112,7 @@ function loadNews() {
 
     fetch('./aktualnosci/post.html')
         .then(response => {
-            if (!response.ok) throw new Error('Błąd ładowania pliku: ' + response.status);
+            if (!response.ok) throw new Error('Status: ' + response.status);
             return response.text();
         })
         .then(data => {
@@ -111,9 +124,10 @@ function loadNews() {
         });
 }
 
-// --- INICJALIZACJA WSZYSTKICH FUNKCJI ---
+// --- INICJALIZACJA WSZYSTKIEGO ---
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSlider();
+    initFloatingPhone();
     loadNews();
 });

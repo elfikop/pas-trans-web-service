@@ -12,6 +12,121 @@
     margin: 0;
     padding: 0;
 }
+/* WYMUSZENIE POZYCJI NA SAMEJ GÓRZE PLIKU style.css */
+
+
+/* --- SEKCJA O NAS --- */
+#o-nas {
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.o-nas-flex {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: #fff;
+}
+
+.o-nas-content {
+    flex: 1.2;
+}
+
+.o-nas-content h3 {
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.o-nas-content p {
+    margin-bottom: 20px;
+    color: #555;
+    text-align: justify;
+}
+
+.misja-box {
+    background: var(--light);
+    padding: 25px;
+    border-left: 5px solid var(--primary);
+    border-radius: 5px;
+    margin: 30px 0;
+}
+
+.misja-box h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.o-nas-atuty {
+    list-style: none;
+    padding: 0;
+}
+
+.o-nas-atuty li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.o-nas-atuty li::before {
+    content: "★";
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.o-nas-grafika {
+    flex: 0.8;
+    position: relative;
+}
+
+.o-nas-img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.staz-box {
+    position: relative;
+    bottom: -20px;
+    left: -20px;
+    background: var(--primary);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+.staz-box .liczba {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.staz-box .tekst {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* Responsywność dla O Nas */
+@media (max-width: 992px) {
+    .o-nas-flex {
+        flex-direction: column;
+    }
+    .o-nas-grafika {
+        order: -1; /* Zdjęcie nad tekstem na mobile */
+        width: 100%;
+    }
+    .staz-box {
+        left: 20px;
+    }
+}
 
 body {
     font-family: 'Lato', sans-serif;
@@ -350,6 +465,8 @@ body {
     height: 100%;
     padding: 80px 0;
 }
+/* Pływający przycisk telefonu */
+/* Pływający przycisk telefonu */
 
 /* Złoty/Brązowy boks z napisem (jak na zdjęciu) */
 .hero-center-box {
@@ -871,5 +988,69 @@ html {
     }
     .cta-btn-phone {
         width: 100%; /* Przyciski na całą szerokość na telefonie */
+    }
+}
+
+
+.floating-phone-btn {
+    position: fixed !important;
+    bottom: 10px !important;
+    right: 20px !important;
+    width: 60px !important;
+    height: 60px !important;
+    background-color: #25d366 !important; /* Zielony WhatsApp/Telefon */
+    color: #fff !important;
+    border-radius: 50% !important;
+    z-index: 999999 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    text-decoration: none !important;
+
+    /* Kluczowe dla centrowania kontenera */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+
+.floating-phone-btn i::before {
+    
+    font-size: 42px !important; /* Tutaj kontrolujesz wielkość */
+    width: auto !important;
+
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+    
+    /* Rozmiar ikony */
+    
+
+    /* OPTYCZNE WYRÓWNANIE */
+    /* Ikona telefonu często wydaje się być zbyt nisko lub za bardzo w lewo. 
+       Jeśli nadal widzisz przesunięcie, odkomentuj i edytuj poniższe wartości: */
+    /* transform: translateY(-1px); */ /* Przesuwa ikonę o 1px w górę */
+    /* transform: translateX(1px); */  /* Przesuwa ikonę o 1px w prawo */
+}
+
+/* Efekt najechania */
+.floating-phone-btn:hover {
+    transform: scale(1.1);
+    background-color: #128c7e !important; /* Ciemniejszy zielony */
+    transition: all 0.3s ease;
+}
+
+/* Dostosowanie dla urządzeń mobilnych */
+@media (max-width: 768px) {
+    .floating-phone-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+    .floating-phone-btn i {
+        font-size: 25px;
     }
 }
