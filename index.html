@@ -75,27 +75,27 @@
 <body>
 
     <nav id="menu">
-    <div class="container menu-flex">
-        <div id="logo">
-            <img src="logo.png" alt="Logo Pas-Trans">
+        <div class="container menu-flex">
+            <div id="logo">
+                <img src="logo.png" alt="Logo Pas-Trans">
+            </div>
+            <button class="menu-toggle" aria-label="Otwórz menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#oferta-sekcja">OFERTA</a></li>
+                <li><a href="#opinie">OPINIE</a></li>
+                <li><a href="#galeria-slider">GALERIA</a></li>
+                <li><a href="#o-nas">O NAS</a></li>
+                <li><a href="rozklad-jazdy/">ROZKŁAD JAZDY</a></li>
+                <li><a href="nasza-flota/">NASZA FLOTA</a></li>
+                <li><a href="aktualnosci/">AKTUALNOŚCI</a></li>
+                <li><a href="#kontakt">KONTAKT</a></li>
+            </ul>
         </div>
-        <button class="menu-toggle" aria-label="Otwórz menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="#oferta-sekcja">OFERTA</a></li>
-            <li><a href="#opinie">OPINIE</a></li>
-            <li><a href="#galeria-slider">GALERIA</a></li>
-            <li><a href="#o-nas">O NAS</a></li>
-            <li><a href="rozklad-jazdy/">ROZKŁAD JAZDY</a></li>
-            <li><a href="nasza-flota/">NASZA FLOTA</a></li>
-            <li><a href="aktualnosci/">AKTUALNOŚCI</a></li>
-            <li><a href="#kontakt">KONTAKT</a></li>
-        </ul>
-    </div>
-</nav>
+    </nav>
 
     <header id="hero">
         <div class="container hero-flex">
@@ -170,51 +170,75 @@
 
     
     <section id="galeria-slider" class="container">
-    <h2 class="section-title">Nasza Flota w obiektywie</h2>
-    <div class="slider-wrapper">
-        <div class="slider">
-            <div class="slide active"><img src="galeria/1.webp" alt="Bus Pas-Trans 0" loading="lazy"></div>
-            <div class="slide"><img src="galeria/11.webp" alt="Bus Pas-Trans 11" loading="lazy"></div>
-            <div class="slide"><img src="galeria/2.webp" alt="Bus Pas-Trans 2" loading="lazy"></div>
-            <div class="slide"><img src="galeria/3.webp" alt="Bus Pas-Trans 3" loading="lazy"></div>
-            <div class="slide"><img src="galeria/4.webp" alt="Bus Pas-Trans 4" loading="lazy"></div>
-            <div class="slide"><img src="galeria/5.webp" alt="Bus Pas-Trans 5" loading="lazy"></div>
-            <div class="slide"><img src="galeria/6.webp" alt="Bus Pas-Trans 6" loading="lazy"></div>
-            <div class="slide"><img src="galeria/7.webp" alt="Bus Pas-Trans 7" loading="lazy"></div>
-            <div class="slide"><img src="galeria/8.webp" alt="Bus Pas-Trans 8" loading="lazy"></div>
-            <div class="slide"><img src="galeria/9.webp" alt="Bus Pas-Trans 9" loading="lazy"></div>
-            <div class="slide"><img src="galeria/10.webp" alt="Bus Pas-Trans 10" loading="lazy"></div>
-            
-            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-            <button class="next" onclick="changeSlide(1)">&#10095;</button>
-        </div>
-        <div class="dots-container" id="dotsContainer"></div>
-    </div>
-</section>
-<section id="o-nas" class="container">
-    <h2 class="section-title">O firmie Pas-Trans</h2>
-    <div class="o-nas-flex">
-        <div class="o-nas-content">
-            <h3>Pasja do transportu i bezpieczeństwo pasażerów</h3>
-            <p>
-                Firma <strong>Pas-Trans Marcin Pastuch</strong> z siedzibą w Gryfowie Śląskim powstała z myślą o zapewnieniu najwyższego standardu podróży na terenie <strong>Dolnego Śląska</strong> oraz całej Polski i Europy. Od lat łączymy wieloletnie doświadczenie za kierownicą z nowoczesnym podejściem do obsługi klienta, oferując profesjonalny <strong>wynajem autokarów i busów</strong>.
-            </p>
-            
-            <div class="misja-box">
-                <h4>Nasza Misja: Komfortowa podróż w każdych warunkach</h4>
-                <p>Naszym celem jest, aby każde zlecenie – od codziennego <strong>dowozu dzieci do szkół</strong>, po dalekobieżne <strong>wycieczki krajowe i zagraniczne</strong> – odbywało się w atmosferze pełnego bezpieczeństwa. Stawiamy na punktualność i rzetelność, bo szanujemy czas naszych pasażerów.</p>
+        <h2 class="section-title">Nasza Flota w obiektywie</h2>
+        <div class="slider-wrapper">
+            <div class="slider">
+                <div class="slide active"><img src="galeria/1.webp" alt="Bus Pas-Trans 0" loading="lazy"></div>
+                <div class="slide"><img src="galeria/11.webp" alt="Bus Pas-Trans 11" loading="lazy"></div>
+                <div class="slide"><img src="galeria/2.webp" alt="Bus Pas-Trans 2" loading="lazy"></div>
+                <div class="slide"><img src="galeria/3.webp" alt="Bus Pas-Trans 3" loading="lazy"></div>
+                <div class="slide"><img src="galeria/4.webp" alt="Bus Pas-Trans 4" loading="lazy"></div>
+                <div class="slide"><img src="galeria/5.webp" alt="Bus Pas-Trans 5" loading="lazy"></div>
+                <div class="slide"><img src="galeria/6.webp" alt="Bus Pas-Trans 6" loading="lazy"></div>
+                <div class="slide"><img src="galeria/7.webp" alt="Bus Pas-Trans 7" loading="lazy"></div>
+                <div class="slide"><img src="galeria/8.webp" alt="Bus Pas-Trans 8" loading="lazy"></div>
+                <div class="slide"><img src="galeria/9.webp" alt="Bus Pas-Trans 9" loading="lazy"></div>
+                <div class="slide"><img src="galeria/10.webp" alt="Bus Pas-Trans 10" loading="lazy"></div>
+                
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
             </div>
+            <div class="dots-container" id="dotsContainer"></div>
+        </div>
+    </section>
 
-            <ul class="o-nas-atuty">
-                <li><strong>Wieloletnie doświadczenie:</strong> Tysiące przejechanych kilometrów i setki zadowolonych grup, które zaufały naszym kierowcom.</li>
-                <li><strong>Elastyczna oferta:</strong> Dostosowujemy się do Twoich potrzeb – od wynajmu małych <strong>busów 9-osobowych</strong> po luksusowe <strong>autokary dla 50 osób</strong>.</li>
-                <li><strong>Nowoczesna flota 2025:</strong> Nieustannie podnosimy standardy, czego dowodem jest nasz nowy, luksusowy <strong>Mercedes dla 26 pasażerów</strong>.</li>
-            </ul>
+    <section id="o-nas" class="container">
+        <h2 class="section-title">O firmie Pas-Trans – Twój partner w transporcie</h2>
+        <div class="o-nas-flex">
+            <div class="o-nas-content">
+                <h3>Pasja, doświadczenie i najwyższe standardy bezpieczeństwa</h3>
+                <p>
+                    Firma <strong>Pas-Trans Marcin Pastuch</strong>, z siedzibą w Gryfowie Śląskim, to dynamicznie rozwijający się lider rynku <strong>wynajmu autokarów na Dolnym Śląsku</strong>. Nasza historia to tysiące bezpiecznie przejechanych kilometrów i setki zadowolonych pasażerów, którzy zaufali nam w kwestii <strong>transportu osób</strong>. Łączymy wieloletnie doświadczenie za kierownicą z nowoczesnym podejściem do logistyki, oferując kompleksowy <strong>wynajem busów i autokarów</strong> na terenie całej Polski oraz Europy.
+                </p>
+                
+                <p>
+                    Specjalizujemy się w obsłudze najbardziej wymagających zleceń – od <strong>wycieczek szkolnych</strong> i dowozu dzieci, przez profesjonalny <strong>transport dla firm</strong>, aż po luksusowe <strong>przewozy autokarowe na wesela</strong> i eventy okolicznościowe. Działamy lokalnie w takich miejscowościach jak <strong>Lubań, Zgorzelec, Bolesławiec czy Jelenia Góra</strong>, ale nasze horyzonty sięgają daleko poza granice regionu.
+                </p>
+
+                <div class="misja-box">
+                    <h4>Nasza Misja: Komfortowa podróż „od drzwi do drzwi”</h4>
+                    <p>Nadrzędnym celem Pas-Trans jest zapewnienie pasażerom atmosfery pełnego bezpieczeństwa i spokoju. Stawiamy na <strong>punktualność, rzetelność oraz elastyczność</strong> – każdą trasę planujemy tak, aby zoptymalizować czas i koszty przejazdu przy zachowaniu najwyższego komfortu podróży.</p>
+                </div>
+
+                <div class="atuty-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div class="atut-item">
+                        <i class="icon-ok" style="color: #fecb2f; font-size: 1.5rem;"></i>
+                        <strong>Wieloletnie doświadczenie rynkowe</strong>
+                        <p>Znamy trasy Dolnego Śląska i Europy jak nikt inny. Nasza wiedza pozwala nam omijać utrudnienia i zawsze docierać do celu na czas.</p>
+                    </div>
+                    <div class="atut-item">
+                        <i class="icon-users" style="color: #fecb2f; font-size: 1.5rem;"></i>
+                        <strong>Zróżnicowana flota 2025</strong>
+                        <p>Dysponujemy pojazdami na każdą okazję: od ekonomicznych <strong>busów 9-osobowych</strong>, przez luksusowe <strong>Mercedesy dla 26 osób</strong>, aż po komfortowe <strong>autokary Scania dla 50 pasażerów</strong>.</p>
+                    </div>
+                    <div class="atut-item">
+                        <i class="icon-lock" style="color: #fecb2f; font-size: 1.5rem;"></i>
+                        <strong>Bezpieczeństwo potwierdzone certyfikatami</strong>
+                        <p>Wszystkie nasze pojazdy przechodzą rygorystyczne przeglądy techniczne, a kierowcy to wykwalifikowani specjaliści dbający o spokój podróżnych.</p>
+                    </div>
+                    <div class="atut-item">
+                        <i class="icon-star" style="color: #fecb2f; font-size: 1.5rem;"></i>
+                        <strong>Indywidualne podejście</strong>
+                        <p>Każda grupa ma inne potrzeby. Przygotowujemy dedykowane wyceny i dostosowujemy przystanki do planu Twojej wycieczki.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px; font-style: italic; color: #555;">
+                    Zapraszamy do współpracy szkoły, biura podróży, instytucje publiczne oraz klientów indywidualnych. Z Pas-Trans każda podróż staje się przyjemnością.
+                </p>
+            </div>
         </div>
-            
-        </div>
-    </div>
-</section>
+    </section>
 <section id="kontakt" class="container">
             <div class="cta-section">
                 <h2 style="color: white; margin-bottom: 10px;">Zapraszamy do bezpłatnej wyceny</h2>
@@ -240,7 +264,7 @@
     <div class="container footer-rework">
         <div class="footer-left">
             <div id="logo-footer">
-                <img src="logo2.jpg" alt="Logo Pas-Trans" loading="lazy">
+                <img src="logo2.webp" alt="Logo Pas-Trans" loading="lazy">
             </div>
             <div class="footer-address">
                 <p>Pas-Trans Marcin Pastuch</p>
