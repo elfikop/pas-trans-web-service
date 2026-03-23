@@ -1,8 +1,9 @@
 /**
  * PAS-TRANS - Scripts 2026
+ * Kompleksowa obsługa strony: Menu, Slider, FAQ, Telefon, News
  */
 
-// --- OBSŁUGA MENU MOBILNEGO ---
+// --- 1. OBSŁUGA MENU MOBILNEGO ---
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -37,7 +38,7 @@ function initMobileMenu() {
     }
 }
 
-// --- SEKCJA SLIDERA ---
+// --- 2. SEKCJA SLIDERA ---
 let slideIndex = 0;
 
 function initSlider() {
@@ -83,7 +84,26 @@ window.changeSlide = function(n) {
     showSlide(slideIndex + n);
 };
 
-// --- INTELIGENTNY PRZYCISK TELEFONU (PC: Scroll / Mobile: Call) ---
+// --- 3. SEKCJA FAQ (HARMONIJKA) ---
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (question) {
+            question.addEventListener('click', () => {
+                // Opcjonalnie: zamknij inne otwarte elementy przed otwarciem nowego
+                // faqItems.forEach(otherItem => {
+                //     if (otherItem !== item) otherItem.classList.remove('active');
+                // });
+                
+                item.classList.toggle('active');
+            });
+        }
+    });
+}
+
+// --- 4. INTELIGENTNY PRZYCISK TELEFONU (PC: Scroll / Mobile: Call) ---
 function initFloatingPhone() {
     const phoneBtn = document.querySelector('.floating-phone-btn');
     
@@ -94,7 +114,7 @@ function initFloatingPhone() {
                 const targetSection = document.querySelector('#kontakt');
                 
                 if (targetSection) {
-                    e.preventDefault(); // Blokuje próbę dzwonienia przez system
+                    e.preventDefault(); // Blokuje próbę dzwonienia przez system na PC
                     targetSection.scrollIntoView({ 
                         behavior: 'smooth' 
                     });
@@ -105,7 +125,7 @@ function initFloatingPhone() {
     }
 }
 
-// --- SEKCJA AKTUALNOŚCI ---
+// --- 5. SEKCJA AKTUALNOŚCI (Dynamiczne ładowanie) ---
 function loadNews() {
     const newsContainer = document.getElementById('miejsce-na-posty');
     if (!newsContainer) return;
@@ -124,10 +144,11 @@ function loadNews() {
         });
 }
 
-// --- INICJALIZACJA WSZYSTKIEGO ---
+// --- 6. INICJALIZACJA WSZYSTKIEGO PO ZAŁADOWANIU DOM ---
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSlider();
+    initFAQ(); // Obsługa nowej sekcji pytań i odpowiedzi
     initFloatingPhone();
     loadNews();
 });
