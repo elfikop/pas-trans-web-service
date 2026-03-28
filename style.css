@@ -1169,3 +1169,72 @@ html {
         grid-template-columns: 1fr 1fr; /* Dwie kolumny na telefonie */
     }
 }
+/* --- COOKIE CONSENT POPUP --- */
+.cookie-overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Ciemne tło */
+    color: white;
+    z-index: 999999; /* Musi być nad przyciskiem telefonu */
+    display: none; /* Domyślnie ukryte */
+    padding: 20px 0;
+    animation: slideUp 0.5s ease-out;
+}
+
+.cookie-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.cookie-container h3 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.cookie-container p {
+    font-size: 0.9rem;
+    margin: 0;
+    max-width: 800px;
+}
+
+.cookie-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.cookie-btn-accept {
+    background: var(--primary) !important;
+    border: none;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.cookie-btn-reject {
+    background: transparent !important;
+    border: 1px solid #ccc !important;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.cookie-btn-reject:hover {
+    background: #444 !important;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .cookie-overlay {
+        padding: 25px 15px;
+    }
+}

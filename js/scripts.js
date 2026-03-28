@@ -1,6 +1,6 @@
 /**
  * PAS-TRANS - Scripts 2026
- * Kompleksowa obsługa strony: Menu, Slider, FAQ, Telefon, News
+ * Kompleksowa obsługa strony: Menu, Slider, FAQ, Telefon, News, Cookies
  */
 
 // --- 1. OBSŁUGA MENU MOBILNEGO ---
@@ -9,14 +9,12 @@ function initMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
 
     if (menuToggle && navLinks) {
-        // Otwieranie/Zamykanie po kliknięciu w hamburger
         menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('is-active');
         });
 
-        // Zamknij menu po kliknięciu w konkretny link
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', () => {
@@ -25,7 +23,6 @@ function initMobileMenu() {
             });
         });
 
-        // Zamknij menu po kliknięciu gdziekolwiek poza nim
         document.addEventListener('click', (e) => {
             const isClickInsideMenu = navLinks.contains(e.target);
             const isClickOnToggle = menuToggle.contains(e.target);
@@ -47,7 +44,6 @@ function initSlider() {
 
     if (slides.length === 0) return;
 
-    // Tworzenie kropek (dots)
     if (dotsContainer) {
         dotsContainer.innerHTML = ''; 
         slides.forEach((_, i) => {
@@ -58,7 +54,6 @@ function initSlider() {
         });
     }
 
-    // Pierwsze uruchomienie
     showSlide(0);
 }
 
@@ -79,7 +74,6 @@ function showSlide(n) {
     if (dots[slideIndex]) dots[slideIndex].classList.add('active');
 }
 
-// Funkcja globalna dla przycisków HTML (onclick="changeSlide")
 window.changeSlide = function(n) {
     showSlide(slideIndex + n);
 };
@@ -92,11 +86,6 @@ function initFAQ() {
         const question = item.querySelector('.faq-question');
         if (question) {
             question.addEventListener('click', () => {
-                // Opcjonalnie: zamknij inne otwarte elementy przed otwarciem nowego
-                // faqItems.forEach(otherItem => {
-                //     if (otherItem !== item) otherItem.classList.remove('active');
-                // });
-                
                 item.classList.toggle('active');
             });
         }
@@ -109,23 +98,21 @@ function initFloatingPhone() {
     
     if (phoneBtn) {
         phoneBtn.addEventListener('click', function(e) {
-            // Jeśli szerokość ekranu jest większa niż 768px (Desktop)
             if (window.innerWidth > 768) {
                 const targetSection = document.querySelector('#kontakt');
                 
                 if (targetSection) {
-                    e.preventDefault(); // Blokuje próbę dzwonienia przez system na PC
+                    e.preventDefault(); 
                     targetSection.scrollIntoView({ 
                         behavior: 'smooth' 
                     });
                 }
             }
-            // Na mobile (<= 768px) skrypt nie przerywa działania - przeglądarka normalnie dzwoni
         });
     }
 }
 
-// --- 5. SEKCJA AKTUALNOŚCI (Dynamiczne ładowanie) ---
+// --- 5. SEKCJA AKTUALNOŚCI ---
 function loadNews() {
     const newsContainer = document.getElementById('miejsce-na-posty');
     if (!newsContainer) return;
@@ -144,11 +131,61 @@ function loadNews() {
         });
 }
 
-// --- 6. INICJALIZACJA WSZYSTKIEGO PO ZAŁADOWANIU DOM ---
+// --- 6. OBSŁUGA PLIKÓW COOKIES I SKRYPTÓW ŚLEDZĄCYCH ---
+function activateTrackingScripts() {
+    const scripts = document.querySelectorAll('script.opt-in');
+    scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        
+        // Kopiowanie atrybutów (src, async, itp.)
+        Array.from(oldScript.attributes).forEach(attr => {
+            newScript.setAttribute(attr.name, attr.value);
+        });
+        
+        // Zmiana typu na javascript wymusza uruchomienie przez przeglądarkę
+        newScript.type = 'text/javascript';
+        newScript.innerHTML = oldScript.innerHTML;
+        
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+}
+
+function initCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    if (!banner || !acceptBtn || !rejectBtn) return;
+
+    const cookieConsent = localStorage.getItem('pasTransCookieConsent');
+
+    // Jeśli zgoda została już wcześniej udzielona, aktywuj skrypty od razu
+    if (cookieConsent === 'accepted') {
+        activateTrackingScripts();
+    } 
+    // Jeśli brak decyzji, pokaż banner
+    else if (!cookieConsent) {
+        banner.style.display = 'block';
+    }
+
+    acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('pasTransCookieConsent', 'accepted');
+        banner.style.display = 'none';
+        activateTrackingScripts(); // Aktywacja skryptów po kliknięciu
+    });
+
+    rejectBtn.addEventListener('click', () => {
+        localStorage.setItem('pasTransCookieConsent', 'rejected');
+        banner.style.display = 'none';
+    });
+}
+
+// --- 7. INICJALIZACJA WSZYSTKIEGO PO ZAŁADOWANIU DOM ---
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initSlider();
-    initFAQ(); // Obsługa nowej sekcji pytań i odpowiedzi
+    initFAQ();
     initFloatingPhone();
     loadNews();
+    initCookieBanner();
 });
