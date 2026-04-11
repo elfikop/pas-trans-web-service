@@ -1238,3 +1238,17 @@ html {
         padding: 25px 15px;
     }
 }
+/* style.css */
+.cookie-reset-link {
+    display: block;
+    margin-top: 5px;
+    color: #999; /* Dyskretniejszy kolor */
+    text-decoration: underline;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cookie-reset-link:hover {
+    color: var(--primary); /* Zmiana na pomarańczowy przy najechaniu */
+}

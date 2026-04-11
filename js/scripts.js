@@ -132,17 +132,49 @@ function loadNews() {
 }
 
 // --- 6. OBSŁUGA PLIKÓW COOKIES I SKRYPTÓW ŚLEDZĄCYCH ---
+
+/**
+ * Funkcja wycofująca zgodę (Reset)
+ */
+function resetCookieConsent(e) {
+    if (e) e.preventDefault();
+    
+    // 1. Czyszczenie localStorage (to już działa)
+    localStorage.removeItem('pasTransCookieConsent');
+    
+    // 2. Rozszerzone czyszczenie ciasteczek
+    const cookies = document.cookie.split(";");
+    const domain = window.location.hostname;
+    const mainDomain = domain.substring(domain.lastIndexOf(".", domain.lastIndexOf(".") - 1));
+
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+        
+        // Lista typowych nazw ciasteczek śledzących
+        if (name.includes("_ga") || name.includes("_gid")|| name.includes("_ga_PV4Y1JJETK") || name.includes("_gat") || name.includes("elfsight")) {
+            // Próba usunięcia dla bieżącej domeny
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+            // Próba usunięcia dla domeny głównej (z kropką)
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + domain;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + mainDomain;
+        }
+    }
+    
+    // 3. Przeładowanie strony
+    location.reload();
+}
+
 function activateTrackingScripts() {
     const scripts = document.querySelectorAll('script.opt-in');
     scripts.forEach(oldScript => {
         const newScript = document.createElement('script');
         
-        // Kopiowanie atrybutów (src, async, itp.)
         Array.from(oldScript.attributes).forEach(attr => {
             newScript.setAttribute(attr.name, attr.value);
         });
         
-        // Zmiana typu na javascript wymusza uruchomienie przez przeglądarkę
         newScript.type = 'text/javascript';
         newScript.innerHTML = oldScript.innerHTML;
         
@@ -154,16 +186,19 @@ function initCookieBanner() {
     const banner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept');
     const rejectBtn = document.getElementById('cookie-reject');
+    const resetLink = document.querySelector('.cookie-reset-link'); // Link w footerze
+
+    if (resetLink) {
+        resetLink.addEventListener('click', resetCookieConsent);
+    }
 
     if (!banner || !acceptBtn || !rejectBtn) return;
 
     const cookieConsent = localStorage.getItem('pasTransCookieConsent');
 
-    // Jeśli zgoda została już wcześniej udzielona, aktywuj skrypty od razu
     if (cookieConsent === 'accepted') {
         activateTrackingScripts();
     } 
-    // Jeśli brak decyzji, pokaż banner
     else if (!cookieConsent) {
         banner.style.display = 'block';
     }
@@ -171,7 +206,7 @@ function initCookieBanner() {
     acceptBtn.addEventListener('click', () => {
         localStorage.setItem('pasTransCookieConsent', 'accepted');
         banner.style.display = 'none';
-        activateTrackingScripts(); // Aktywacja skryptów po kliknięciu
+        activateTrackingScripts();
     });
 
     rejectBtn.addEventListener('click', () => {
