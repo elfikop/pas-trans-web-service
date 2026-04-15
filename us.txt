@@ -6,4 +6,4 @@
                     <p>Od 1 kwietnia Pas-Trans będzie obsługiwał linię autobusową łączącą Lubań z Jelenią Górą - to nie prima aprilis 🥳! Serdecznie zapraszamy do zapoznania sie z naszym rozkładem jazdy. Kliknij przycisk poniżej i sprawdź! .</p>
                     <a href="../rozklad-jazdy/" class="btn-read-more">Rozkład jazdy</a>
                 </div>
-            </article>
+           

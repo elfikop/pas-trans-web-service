@@ -1,0 +1,32 @@
+name: Deploy to home.pl FTP
+
+on:
+  push:
+    branches:
+      - main  # Zmień na 'master', jeśli tak nazywa się Twoja główna gałąź
+
+jobs:
+  web-deploy:
+    name: Wdrażanie plików
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Pobieranie kodu repozytorium
+      uses: actions/checkout@v4
+
+    - name: 📂 Synchronizacja plików przez FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        
+        # Wskazuje folder na serwerze home.pl, do którego trafią pliki.
+        # UWAGA: musi kończyć się ukośnikiem (/). Jeśli wgrywasz do katalogu głównego wpisz /
+        server-dir: /public_html
+        
+        # Opcjonalnie: pliki, których NIE chcesz wysyłać na serwer (odkomentuj, usuwając znak #)
+        exclude: |
+        **/.git*
+        **/.git*/**
+        **/.github/**
+        **/README.md
