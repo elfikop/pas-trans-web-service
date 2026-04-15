@@ -1252,3 +1252,17 @@ html {
 .cookie-reset-link:hover {
     color: var(--primary); /* Zmiana na pomarańczowy przy najechaniu */
 }
+/* --- DOPASOWANIE OBRAZKA WESELE Z KLASĄ DO IKON --- */
+.social-dot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Sprawia, że obrazek idealnie wypełnia kółko */
+    transition: all 0.3s ease;
+}
+
+/* Ponieważ obrazek nie jest przezroczysty, po najechaniu ukryje 
+   Twoje pomarańczowe tło (var(--primary)). Obniżamy więc jego 
+   krycie, by pomarańcz przebijał od spodu i dawał spójny efekt */
+.social-dot:hover img {
+    opacity: 0.4; 
+}

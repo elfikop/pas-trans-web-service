@@ -1,0 +1,9 @@
+<article class="blog-card">
+                <div class="blog-card-image" style="background-image: url('galeria/6.webp');"></div>
+                <div class="blog-card-content">
+                    <span class="date">28.03.2026</span>
+                    <h3>Nowość! linia autobusowa nr 217: Lubań - Jelenia Góra</h3>
+                    <p>Od 1 kwietnia Pas-Trans będzie obsługiwał linię autobusową łączącą Lubań z Jelenią Górą - to nie prima aprilis 🥳! Serdecznie zapraszamy do zapoznania sie z naszym rozkładem jazdy. Kliknij przycisk poniżej i sprawdź! .</p>
+                    <a href="../rozklad-jazdy/" class="btn-read-more">Rozkład jazdy</a>
+                </div>
+            </article>
