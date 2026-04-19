@@ -1,0 +1,344 @@
+---
+import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import ContactPanel from '../../components/ContactPanel.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <GoogleAnalytics />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasza Flota - Nowoczesne Autokary i Busy | Pas-Trans</title>
+    <meta name="description" content="Zobacz nasze pojazdy! Posiadamy nowoczesne autokary Scania oraz luksusowe busy Mercedes." />
+    <link rel="canonical" href="https://autokarypastrans.pl/nasza-flota/" />
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
+
+    <meta property="og:title" content="Nasza Flota - Zobacz czym podróżujesz z Pas-Trans" />
+    <meta property="og:description" content="Nowoczesne pojazdy od 8 do 50 miejsc. Poznaj standard naszych autokarów." />
+    <meta property="og:image" content="/nasza-flota/m1.webp" />
+    <meta property="og:url" content="https://autokarypastrans.pl/nasza-flota/" />
+    <meta property="og:type" content="website" />
+    
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Bazowa stylizacja elementu floty */
+        .flota-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            margin-bottom: 80px;
+            padding: 30px;
+            border-radius: 20px;
+            background: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .flota-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Układ naprzemienny na desktopie */
+        .flota-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .flota-gallery-container {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-img-wrapper {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            background: #eee;
+        }
+
+        .main-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thumbnails img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            opacity: 0.7;
+        }
+
+        .thumbnails img:hover {
+            opacity: 1;
+        }
+
+        .thumbnails img.active-thumb {
+            border-color: var(--primary);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .flota-info {
+            flex: 1;
+        }
+
+        .vehicle-badge {
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .flota-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .spec-box {
+            background: var(--light);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .spec-box i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        /* --- AKCENT MOBILNY (TELEFONY I TABLETY) --- */
+        @media (max-width: 992px) {
+            .flota-item, .flota-item:nth-child(even) {
+                flex-direction: column;
+                background: #ffffff;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                border: 1px solid #f0f0f0;
+                padding: 20px;
+                margin-bottom: 40px;
+                gap: 20px;
+            }
+
+            .flota-info {
+                text-align: center;
+                width: 100%;
+            }
+
+            .flota-info h2 {
+                font-size: 1.8rem;
+                margin-top: 5px;
+            }
+
+            .main-img-wrapper {
+                height: 280px;
+            }
+
+            .thumbnails img {
+                width: 60px;
+                height: 45px;
+            }
+
+            .specs-grid {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="menu">
+        <div class="container menu-flex">
+            <div id="logo">
+                <a href="/"><img src="/logo.png" alt="Logo Pas-Trans"></a>
+            </div>
+            <button class="menu-toggle" aria-label="Otwórz menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">STRONA GŁÓWNA</a></li>
+                <li><a href="/#oferta-sekcja">OFERTA</a></li>
+                <li><a href="/nasza-flota/">NASZA FLOTA</a></li>
+                <li><a href="/aktualnosci/">AKTUALNOŚCI</a></li>
+                <li><a href="/#opinie">OPINIE</a></li>
+                <li><a href="/#galeria-slider">GALERIA</a></li>
+                <li><a href="/rozklad-jazdy/">ROZKŁAD JAZDY</a></li>
+                <li><a href="#kontakt">KONTAKT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="hero-subwebsite" style="background: url('/galeria/sub_hero_2.webp') no-repeat center center; background-size: cover;">
+        <div class="hero-overlay">
+            <div class="hero-center-box">
+                <h1>Nasza Flota</h1>
+                <p>Wybierz pojazd dopasowany do Twoich potrzeb</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="flota" class="container" style="padding: 60px 20px;">
+        
+        <div class="flota-item">
+            <div class="flota-gallery-container">
+                <div class="main-img-wrapper">
+                    <img src="/galeria/2.webp" id="main-scania" alt="Scania Touring">
+                </div>
+                <div class="thumbnails">
+                    <img src="/galeria/2.webp" class="active-thumb" onclick="changePhoto('main-scania', this.src, this)" alt="Scania 1">
+                    <img src="/nasza-flota/s2.webp" onclick="changePhoto('main-scania', this.src, this)" alt="Scania 2">
+                    <img src="/nasza-flota/s3.webp" onclick="changePhoto('main-scania', this.src, this)" alt="Scania 3">
+                    <img src="/nasza-flota/s4.webp" onclick="changePhoto('main-scania', this.src, this)" alt="Scania 4">
+                    <img src="/nasza-flota/s5.webp" onclick="changePhoto('main-scania', this.src, this)" alt="Scania 5">
+                    <img src="/nasza-flota/s6.webp" onclick="changePhoto('main-scania', this.src, this)" alt="Scania 6">
+                </div>
+            </div>
+            <div class="flota-info">
+                <span class="vehicle-badge">Autokar Turystyczny</span>
+                <h2>Scania Touring</h2>
+                <p>Nasz flagowy autokar na dalekie trasy. Komfort i bezpieczeństwo klasy premium.</p>
+                <div class="specs-grid">
+                    <div class="spec-box"><i class="icon-users"></i> Miejsca: 50</div>
+                    <div class="spec-box"><i class="icon-snowflake-o"></i> Bar</div>
+                    <div class="spec-box"><i class="icon-monitor"></i> TV / gniazdka</div>
+                    <div class="spec-box"><i class="icon-coffee"></i> WC</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flota-item">
+            <div class="flota-gallery-container">
+                <div class="main-img-wrapper">
+                    <img src="/nasza-flota/m1.webp" id="main-mercedes-vip" alt="Mercedes Sprinter VIP">
+                </div>
+                <div class="thumbnails">
+                    <img src="/nasza-flota/m1.webp" class="active-thumb" onclick="changePhoto('main-mercedes-vip', this.src, this)" alt="Mercedes VIP 1">
+                    <img src="/nasza-flota/m2.webp" onclick="changePhoto('main-mercedes-vip', this.src, this)" alt="Mercedes VIP 2">
+                    <img src="/nasza-flota/m3.webp" onclick="changePhoto('main-mercedes-vip', this.src, this)" alt="Mercedes VIP 3">
+                    <img src="/nasza-flota/m4.webp" onclick="changePhoto('main-mercedes-vip', this.src, this)" alt="Mercedes VIP 4">
+                </div>
+            </div>
+            <div class="flota-info">
+                <span class="vehicle-badge">Nowość 2025</span>
+                <h2>Mercedes Sprinter VIP</h2>
+                <p>Luksusowy bus dla grup wymagających najwyższego standardu podróży.</p>
+                <div class="specs-grid">
+                    <div class="spec-box"><i class="icon-users"></i> Miejsca: 26</div>
+                    <div class="spec-box"><i class="icon-lock"></i> Gniazdka pasażerskie</div>
+                    <div class="spec-box"><i class="icon-lightbulb"></i> Głośniki Bluetooth</div>
+                    <div class="spec-box"><i class="icon-plug"></i> Oświetlenie LED</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flota-item">
+            <div class="flota-gallery-container">
+                <div class="main-img-wrapper">
+                    <img src="/nasza-flota/ma1.webp" id="main-renault" alt="Renault Master">
+                </div>
+                <div class="thumbnails">
+                    <img src="/nasza-flota/ma1.webp" class="active-thumb" onclick="changePhoto('main-renault', this.src, this)" alt="Renault 1">
+                    <img src="/nasza-flota/ma2.webp" onclick="changePhoto('main-renault', this.src, this)" alt="Renault 2">
+                    <img src="/nasza-flota/ma1.webp" onclick="changePhoto('main-renault', this.src, this)" alt="Renault 3">
+                </div>
+            </div>
+            <div class="flota-info">
+                <span class="vehicle-badge">Praktyczny Wybór</span>
+                <h2>Renault Master</h2>
+                <p>Dynamiczny bus idealny na trasy lokalne dla mniejszych grup.</p>
+                <div class="specs-grid">
+                    <div class="spec-box"><i class="icon-users"></i> Miejsca: 15</div>
+                    <div class="spec-box"><i class="icon-resize-full"></i> Wygodne fotele</div>
+                    <div class="spec-box"><i class="icon-ok"></i> Regulacja oparć</div>
+                    <div class="spec-box"><i class="icon-umbrella"></i> Klimatyzacja</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <ContactPanel />
+    <Footer />
+
+    <div id="cookie-banner" class="cookie-overlay">
+        <div class="cookie-container">
+            <h3>Polityka Prywatności</h3>
+            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
+            <div class="cookie-btns">
+                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
+                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
+            </div>
+        </div>
+    </div>
+
+    <script is:inline>
+        function changePhoto(mainImgId, newSrc, thumbElement) {
+            const mainImg = document.getElementById(mainImgId);
+            mainImg.style.opacity = '0';
+            
+            setTimeout(() => {
+                mainImg.src = newSrc;
+                mainImg.style.opacity = '1';
+            }, 300);
+
+            const parentThumbContainer = thumbElement.parentElement;
+            parentThumbContainer.querySelectorAll('img').forEach(img => {
+                img.classList.remove('active-thumb');
+            });
+            thumbElement.classList.add('active-thumb');
+        }
+
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.flota-item').forEach(item => observer.observe(item));
+    </script>
+    <script is:inline src="/js/scripts.js"></script>
+
+    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
+        <i class="icon-phone"></i>
+    </a> 
+</body>
+</html>

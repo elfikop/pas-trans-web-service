@@ -1,0 +1,82 @@
+/* aktualnosci/style.css */
+
+.article-content {
+    padding: 60px 0;
+    line-height: 1.8;
+    color: #444;
+}
+
+.article-content h2 {
+    color: var(--primary);
+    margin: 35px 0 15px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Wspólny szkielet bannera */
+.article-hero {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+}
+
+.highlight-box {
+    background: #fff8f4;
+    border-left: 6px solid var(--primary);
+    padding: 35px;
+    margin: 45px 0;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.city-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.city-item {
+    background: #fff;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--dark);
+    transition: all 0.3s ease;
+}
+
+.city-item:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.seo-text {
+    font-size: 1.05rem;
+    text-align: justify;
+}
+
+.equipment-list, .features-grid {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px dashed var(--primary);
+    margin: 20px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .article-hero { padding: 80px 15px; }
+    .article-hero h1 { font-size: 1.8rem; }
+    .features-grid { grid-template-columns: 1fr; }
+}

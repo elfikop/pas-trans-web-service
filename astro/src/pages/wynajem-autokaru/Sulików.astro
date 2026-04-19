@@ -1,0 +1,120 @@
+---
+import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import ContactPanel from '../../components/ContactPanel.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <GoogleAnalytics />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wynajem Autokarów Sulików - Transport i Busy | Pas-Trans</title>
+    <meta name="description" content="Szukasz pewnego przewoźnika w Sulikowie? Oferujemy profesjonalny wynajem autokarów i busów dla grup, szkół i firm. Obsługa transferów granicznych i lokalnych." />
+    <link rel="canonical" href="https://autokarypastrans.pl/wynajem-autokaru/Sulików.html" />
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
+
+    <meta property="og:title" content="Wynajem Autokarów Sulików - Pas-Trans Marcin Pastuch" />
+    <meta property="og:description" content="Bezpieczny i komfortowy transport w Sulikowie. Specjaliści od dowozów pracowniczych i wycieczek zagranicznych." />
+    <meta property="og:image" content="/galeria/hero.webp" />
+    <meta property="og:url" content="https://autokarypastrans.pl/wynajem-autokaru/Sulików.html" />
+    <meta property="og:type" content="website" />
+
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        .wynajem-content { padding: 60px 0; }
+        .feature-list { list-style: none; padding: 0; margin: 30px 0; }
+        .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
+        .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
+        .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+    <nav id="menu">
+        <div class="container menu-flex">
+            <div id="logo">
+                <a href="/"><img src="/logo.png" alt="Logo Pas-Trans"></a>
+            </div>
+            <button class="menu-toggle" aria-label="Otwórz menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">STRONA GŁÓWNA</a></li>
+                <li><a href="#oferta-sulikow">OFERTA SULIKÓW</a></li>
+                <li><a href="/aktualnosci/">AKTUALNOŚCI</a></li>
+                <li><a href="/#opinie">OPINIE</a></li>
+                <li><a href="/#galeria-slider">GALERIA</a></li>
+                <li><a href="/rozklad-jazdy/">ROZKŁAD JAZDY</a></li>
+                <li><a href="/nasza-flota/">NASZA FLOTA</a></li>
+                <li><a href="#kontakt">KONTAKT</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header id="hero-subwebsite">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-center-box">
+                    <h1>Wynajem autokarów Sulików</h1>
+                </div>
+                <div class="hero-breadcrumb">
+                    PAS-TRANS — TWOJA FIRMA TRANSPORTOWA W SULIKOWIE
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container wynajem-content">
+        <h2 id="oferta-sulikow" class="section-title">Profesjonalny transport w Sulikowie</h2>
+        <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            <strong>Sulików</strong> i okolice to region, w którym Pas-Trans zapewnia rzetelną obsługę transportową. Dzięki bliskości Zgorzelca i granicy, specjalizujemy się w przewozach lokalnych oraz międzynarodowych.
+        </p>
+
+        <div class="info-box">
+            <h3>Dlaczego Sulików wybiera Pas-Trans?</h3>
+            <ul class="feature-list">
+                <li><strong>Przewozy pracownicze:</strong> Codzienny dowóz pracowników z Sulikowa do stref ekonomicznych w Zgorzelcu i okolicy.</li>
+                <li><strong>Obsługa szkół:</strong> Bezpieczne wycieczki szkolne dla uczniów z gminy Sulików w Karkonosze i do Czech.</li>
+                <li><strong>Transfery graniczne:</strong> Szybkie i komfortowe przejazdy na drugą stronę granicy (Niemcy, Czechy).</li>
+                <li><strong>Flota 2025:</strong> Nowoczesne busy Mercedes Sprinter oraz duże autokary turystyczne Scania.</li>
+            </ul>
+        </div>
+
+        <section class="szczegolowa-oferta">
+            <h3>Kompleksowa oferta dla Sulikowa</h3>
+            <div class="oferta-artykul-grid">
+                <div class="oferta-item">
+                    <h4><i class="icon-briefcase"></i> Transport dla Firm</h4>
+                    <p>Zapewniamy punktualność, która jest kluczowa dla Twojego biznesu. Dowozimy pracowników na zmiany, organizujemy wyjazdy integracyjne i konferencje.</p>
+                </div>
+                <div class="oferta-item">
+                    <h4><i class="icon-school"></i> Wycieczki Szkolne</h4>
+                    <p>Realizujemy bezpieczny transport na wycieczki jednodniowe i wielodniowe. Każdy przejazd jest planowany z myślą o komforcie najmłodszych pasażerów.</p>
+                </div>
+                <div class="oferta-item">
+                    <h4><i class="icon-heart"></i> Imprezy i Wesela</h4>
+                    <p>Oferujemy transport gości weselnych w Sulikowie i okolicach. Nasze busy to gwarancja czystości, wygody i profesjonalnego podejścia kierowcy.</p>
+                </div>
+                <div class="oferta-item podsumowanie">
+                    <p>Potrzebujesz sprawnego transportu w Sulikowie? Zadzwoń do Pas-Trans – przygotujemy ofertę dopasowaną do Twoich potrzeb w 15 minut.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <ContactPanel />
+    <Footer />
+
+    <script is:inline src="/js/scripts.js"></script>
+    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
+        <i class="icon-phone"></i>
+    </a> 
+</body>
+</html>
