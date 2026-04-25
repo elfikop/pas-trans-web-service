@@ -17,13 +17,13 @@ jobs:
     - name: 🟢 Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20 # Używamy stabilnej wersji LTS
+        node-version: 22
 
-    # KROK 2: Instalacja zależności i budowanie projektu
+    # ROZWIĄZANIE 2: Poprawna instalacja i budowanie
     - name: 🏗️ Instalacja i Budowanie Astro
       run: |
         cd astro
-        npm install
+        npm ci  # 'npm ci' jest lepsze do CI/CD niż 'npm install'
         npm run build
 
     # KROK 3: Synchronizacja gotowych plików z folderu dist
