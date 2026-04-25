@@ -1,0 +1,269 @@
+---
+// src/components/GoogleReviews.astro
+
+const apiKey = import.meta.env.GOOGLE_API_KEY;
+const placeId = import.meta.env.GOOGLE_PLACE_ID;
+const reviewLink = `https://search.google.com/local/writereview?placeid=${placeId}`;
+
+let reviews = [];
+let googleRating = "0.0";
+let reviewsCount = "0";
+let apiError = null;
+
+const colors = ["#9c27b0", "#f44336", "#673ab7", "#607d8b", "#009688", "#ff9800", "#e91e63", "#3f51b5"];
+
+try {
+  const response = await fetch(`https://places.googleapis.com/v1/places/${placeId}?languageCode=pl`, {
+    method: 'GET',
+    headers: {
+      'X-Goog-Api-Key': apiKey,
+      // Poprawiona maska - upewniamy się, że prosimy o linki do zdjęć profilowych
+      'X-Goog-FieldMask': 'rating,userRatingCount,reviews'
+    }
+  });
+  
+  const data = await response.json();
+
+  if (response.ok) {
+    googleRating = data.rating ? data.rating.toString() : "5.0";
+    reviewsCount = data.userRatingCount ? data.userRatingCount.toString() : "0";
+
+    if (data.reviews) {
+      let fetchedReviews = data.reviews.map(review => ({
+        name: review.authorAttribution?.displayName || "Anonim",
+        date: review.relativePublishTimeDescription || "",
+        text: review.text?.text || "",
+        rating: review.rating || 5,
+        photoUrl: review.authorAttribution?.photoUri || null,
+        avatarColor: colors[Math.floor(Math.random() * colors.length)]
+      }));
+
+      // Filtrujemy TYLKO opinie 5-gwiazdkowe
+      reviews = fetchedReviews.filter(r => r.rating === 5);
+    }
+  } else {
+    apiError = `Błąd API (New): ${data.error?.status} - ${data.error?.message}`;
+  }
+} catch (error) {
+  console.error("Błąd podczas pobierania opinii:", error);
+  apiError = `Błąd połączenia z serwerem: ${error.message}`;
+}
+---
+
+<section class="gr-widget-wrapper">
+  <h2 class="section-title">Co o nas sądzą nasi klienci?</h2>
+
+  <div class="gr-widget-container">
+    <div class="gr-header">
+      <div class="gr-header-left">
+        <div class="gr-logo-row">
+          <span class="google-font">
+            <span style="color:#4285F4">G</span><span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span><span style="color:#4285F4">g</span><span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+          </span>
+          <span class="opinie-text">Opinie</span>
+        </div>
+        <div class="gr-rating-row">
+          <span class="gr-score">{googleRating}</span>
+          <span class="gr-stars">★★★★★</span>
+          <span class="gr-count">({reviewsCount})</span>
+        </div>
+      </div>
+      <a href={reviewLink} target="_blank" rel="noopener noreferrer" class="gr-btn">Oceń nas na Google</a>
+    </div>
+
+    {apiError ? (
+      <div style="background: #ffebee; color: #c62828; padding: 20px; border-radius: 8px; font-weight: 500; text-align: center;">
+        🕵️‍♂️ <strong>Błąd:</strong> {apiError}
+      </div>
+    ) : reviews.length > 0 ? (
+      <div class="carousel-outer">
+        <button class="nav-btn prev" aria-label="Poprzedni">❮</button>
+        <button class="nav-btn next" aria-label="Następny">❯</button>
+
+        <div class="gr-carousel" id="reviewCarousel">
+          <div class="track-container">
+            <div class="track" id="reviewTrack">
+              {reviews.map((review) => (
+                <div class="review-card">
+                  <div class="card-header-centered">
+                    
+                    {/* Zdjęcie profilowe (jeśli jest) */}
+                    {review.photoUrl ? (
+                      <div class="avatar has-photo" style={`background-image: url('${review.photoUrl}')`}></div>
+                    ) : (
+                      <div class="avatar" style={`background-color: ${review.avatarColor}`}>
+                        {review.name.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+
+                    <div class="author-name">{review.name} <span class="v-check">✔</span></div>
+                    
+                    <div class="date-row">
+                      <div class="g-icon-small">G</div>
+                      <span class="post-date">{review.date}</span>
+                    </div>
+
+                    <div class="card-stars">★★★★★</div>
+                  </div>
+                  
+                  <p class="card-text">{review.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="dots-container" id="dotsContainer">
+          {reviews.map((_, i) => (
+            <button class={`dot ${i === 0 ? 'active' : ''}`} data-index={i}></button>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <p style="text-align: center; color: #70757a; padding: 20px;">Brak opinii do wyświetlenia w tej chwili.</p>
+    )}
+  </div>
+</section>
+
+<style>
+  /* Główne kontenery */
+  .gr-widget-wrapper { max-width: 1200px; margin: 2rem auto; padding: 0 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+  .section-title { text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 30px; color: #202124; }
+  .gr-widget-container { background-color: #f8f9fa; border-radius: 16px; padding: 30px; position: relative; }
+  
+  /* Nagłówek */
+  .gr-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
+  .google-font { font-size: 26px; font-weight: 600; }
+  .opinie-text { color: #5f6368; font-size: 26px; margin-left: 5px; }
+  .gr-rating-row { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
+  .gr-score { font-size: 24px; font-weight: bold; color: #202124; }
+  .gr-stars { color: #fbbc04; font-size: 20px; letter-spacing: 2px; }
+  .gr-count { color: #70757a; font-size: 14px; }
+  .gr-btn { background-color: #1a73e8; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background 0.3s; }
+  .gr-btn:hover { background-color: #1557b0; }
+
+  /* Karuzela i strzałki naprawione */
+  .carousel-outer { position: relative; }
+  .gr-carousel { overflow: hidden; margin: 0 10px; }
+  .track-container { width: 100%; }
+  .track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+  
+  /* Nowe duże białe strzałki */
+  .nav-btn { 
+    background: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    width: 48px; 
+    height: 48px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    position: absolute; 
+    top: 45%; 
+    transform: translateY(-50%); 
+    z-index: 10; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #5f6368;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.12); color: #202124; }
+  .prev { left: -24px; }
+  .next { right: -24px; }
+
+  /* Nowy układ karty (wycentrowany nagłówek) */
+  .review-card { background: white; border-radius: 12px; padding: 24px; min-width: calc(33.33% - 14px); box-shadow: 0 1px 4px rgba(0,0,0,0.08); display: flex; flex-direction: column; box-sizing: border-box; border: 1px solid #f1f3f4; }
+  
+  .card-header-centered { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
+  
+  .avatar { width: 48px; height: 48px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; margin-bottom: 12px; background-size: cover; background-position: center; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);}
+  .has-photo { background-color: transparent; }
+  
+  .author-name { font-weight: 600; font-size: 15px; text-align: center; color: #202124; margin-bottom: 4px; }
+  .v-check { color: #1a73e8; font-size: 13px; margin-left: 2px; }
+  
+  .date-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+  .g-icon-small { width: 14px; height: 14px; border-radius: 50%; border: 1px solid #e0e0e0; font-size: 9px; font-weight: bold; color: #4285F4; display: flex; align-items: center; justify-content: center; padding-bottom: 1px;}
+  .post-date { color: #70757a; font-size: 13px; }
+  
+  .card-stars { color: #fbbc04; font-size: 18px; letter-spacing: 2px; }
+  .card-text { font-size: 14px; color: #3c4043; line-height: 1.6; text-align: left; }
+
+  .dots-container { display: flex; justify-content: center; gap: 8px; margin-top: 25px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #dadce0; border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+  .dot.active { background: #202124; width: 10px; height: 10px; }
+  
+  /* RWD */
+  @media (max-width: 992px) { .review-card { min-width: calc(50% - 10px); } }
+  @media (max-width: 600px) { 
+    .review-card { min-width: 100%; } 
+    .gr-header { flex-direction: column; text-align: center; } 
+    .prev, .next { display: none; } /* Na małych ekranach ukrywamy przyciski, by nie nachodziły na tekst */
+  }
+</style>
+
+<script>
+  function initCarousel() {
+    const track = document.getElementById('reviewTrack');
+    // Znajdujemy kontener karuzeli nieco wyżej, żeby złapać strzałki
+    const container = document.querySelector('.carousel-outer');
+    if (!track || !container) return;
+
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = container.querySelector('.prev');
+    const nextBtn = container.querySelector('.next');
+    
+    let currentIndex = 0;
+
+    const update = () => {
+      const card = track.querySelector('.review-card') as HTMLElement;
+      if (!card) return;
+      
+      const cardWidth = card.offsetWidth + 20; // width + gap
+      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    };
+
+    const getVisibleCards = () => {
+      if (window.innerWidth <= 600) return 1;
+      if (window.innerWidth <= 992) return 2;
+      return 3;
+    };
+
+    nextBtn?.addEventListener('click', () => {
+      const max = track.children.length;
+      if (currentIndex < max - getVisibleCards()) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Zapętlenie do początku
+      }
+      update();
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        // Skok na koniec
+        currentIndex = Math.max(0, track.children.length - getVisibleCards());
+      }
+      update();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        currentIndex = parseInt((e.target as HTMLElement).dataset.index || '0');
+        update();
+      });
+    });
+
+    window.addEventListener('resize', update);
+  }
+
+  // W Astro ważne jest to zdarzenie ze względu na cykl życia
+  document.addEventListener('DOMContentLoaded', initCarousel);
+</script>
