@@ -1,35 +1,21 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import NavbarArticle from '../../components/NavbarArticle.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wynajem autokarów Wrocław - Przewozy turystyczne i firmowe | Pas-Trans</title>
-    <meta name="description" content="Szukasz transportu we Wrocławiu? Oferujemy wynajem nowoczesnych autokarów i busów na wycieczki, eventy i przewozy pracownicze. Poznaj stolicę Dolnego Śląska z nami." />
-    <link rel="canonical" href="https://autokarypastrans.pl/aktualnosci/wroclaw.html" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
-
-    <meta property="og:title" content="Wrocław z pokładu autokaru: Zwiedzaj stolicę Dolnego Śląska" />
-    <meta property="og:description" content="Profesjonalny transport dla grup turystycznych i biznesowych we Wrocławiu. Sprawdź ofertę Pas-Trans." />
-    <meta property="og:image" content="/aktualnosci/galeria/6.webp" />
-    <meta property="og:url" content="https://autokarypastrans.pl/aktualnosci/wroclaw.html" />
-    <meta property="og:type" content="article" />
-    
-    <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+<BaseLayout
+    title="Wynajem autokarów Wrocław - Przewozy turystyczne i firmowe | Pas-Trans"
+    description="Szukasz transportu we Wrocławiu? Oferujemy wynajem nowoczesnych autokarów i busów na wycieczki, eventy i przewozy pracownicze. Poznaj stolicę Dolnego Śląska z nami."
+    canonical="https://autokarypastrans.pl/aktualnosci/wroclaw.html"
+    ogTitle="Wrocław z pokładu autokaru: Zwiedzaj stolicę Dolnego Śląska"
+    ogDescription="Profesjonalny transport dla grup turystycznych i biznesowych we Wrocławiu. Sprawdź ofertę Pas-Trans."
+    ogImage="/aktualnosci/galeria/6.webp"
+    ogUrl="https://autokarypastrans.pl/aktualnosci/wroclaw.html"
+    ogType="article"
+>
+    <Fragment slot="head">
+        <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
+    </Fragment>
 
     <NavbarArticle />
     
@@ -76,24 +62,4 @@ import Footer from '../../components/Footer.astro';
             <p>Przygotujemy dla Ciebie ofertę dopasowaną do wielkości Twojej grupy i planowanej trasy. Skontaktuj się z naszym biurem telefonicznie lub mailowo.</p>
         </article>
     </main>
-
-    <ContactPanel />
-    <Footer />
-
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-
-    <script is:inline src="/js/scripts.js"></script>
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

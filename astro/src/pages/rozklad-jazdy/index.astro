@@ -1,80 +1,65 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
+<BaseLayout
+    title="Rozkład Jazdy - Busy i Autobusy | Pas-Trans Gryfów Śląski"
+    description="Sprawdź aktualny rozkład jazdy autobusów Pas-Trans na trasach: Miłoszów – Lubań oraz Zgorzelec – Gryfów Śląski."
+    canonical="https://autokarypastrans.pl/rozklad-jazdy/"
+    ogTitle="Rozkład Jazdy Pas-Trans - Sprawdź Godziny Odjazdów"
+    ogDescription="Aktualne rozkłady jazdy. Pobierz godziny odjazdów dla swoich tras."
+    ogImage="/logo.png"
+    ogUrl="https://autokarypastrans.pl/rozklad-jazdy/"
+    ogType="website"
+>
+    <Fragment slot="head">
+        <style>
+            /* Dodatkowe style dla kafelków rozkładu */
+            .rozklad-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+                margin-top: 40px;
+                margin-bottom: 60px;
+            }
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rozkład Jazdy - Busy i Autobusy | Pas-Trans Gryfów Śląski</title>
-    <meta name="description" content="Sprawdź aktualny rozkład jazdy autobusów Pas-Trans na trasach: Miłoszów – Lubań oraz Zgorzelec – Gryfów Śląski." />
-    <link rel="canonical" href="https://autokarypastrans.pl/rozklad-jazdy/" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
+            .rozklad-card {
+                background-color: var(--light);
+                padding: 40px;
+                border-radius: 10px;
+                text-align: center;
+                border-bottom: 5px solid var(--primary);
+                transition: all 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                min-height: 280px;
+                box-shadow: var(--shadow);
+            }
 
-    <meta property="og:title" content="Rozkład Jazdy Pas-Trans - Sprawdź Godziny Odjazdów" />
-    <meta property="og:description" content="Aktualne rozkłady jazdy. Pobierz godziny odjazdów dla swoich tras." />
-    <meta property="og:image" content="/logo.png" />
-    <meta property="og:url" content="https://autokarypastrans.pl/rozklad-jazdy/" />
-    <meta property="og:type" content="website" />
-    
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Dodatkowe style dla kafelków rozkładu */
-        .rozklad-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-            margin-bottom: 60px;
-        }
+            .rozklad-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            }
 
-        .rozklad-card {
-            background-color: var(--light);
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            border-bottom: 5px solid var(--primary);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 280px;
-            box-shadow: var(--shadow);
-        }
-
-        .rozklad-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .rozklad-card h3 {
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        #hero-subwebsite {
-           position: relative;
-            background: url('/galeria/sub_hero_2.webp') no-repeat center center;
-            background-size: cover;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
-</head>
-<body>
+            .rozklad-card h3 {
+                font-family: 'Josefin Sans', sans-serif;
+                font-size: 1.4rem;
+                color: var(--dark);
+                margin-bottom: 20px;
+                line-height: 1.4;
+            }
+            #hero-subwebsite {
+                position: relative;
+                background: url('/galeria/sub_hero_2.webp') no-repeat center center;
+                background-size: cover;
+                min-height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </Fragment>
 
     <nav id="menu">
         <div class="container menu-flex">
@@ -82,7 +67,6 @@ import Footer from '../../components/Footer.astro';
                 <img src="/logo.png" alt="Logo Pas-Trans">
             </div>
             <button class="menu-toggle" aria-label="Otwórz menu">
-                <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -142,98 +126,78 @@ import Footer from '../../components/Footer.astro';
         </div>
     </main>
 
-<section id="rozklad-seo-content" class="rozklad-seo-content" style="margin-top: 50px; line-height: 1.8; color: #444;">
-    <div class="container">
-        <h2 style="color: var(--dark); margin-bottom: 20px;">Rozkład Jazdy Pas-Trans – Sprawdź Godziny Odjazdów</h2>
-        
-        <p>Szukasz pewnego transportu w regionie? <strong>Pas-Trans Marcin Pastuch</strong> zapewnia regularne połączenia autobusowe, łącząc kluczowe miejscowości Dolnego Śląska. Nasz <strong>rozkład jazdy</strong> został opracowany tak, aby ułatwić codzienną komunikację mieszkańcom, pracownikom oraz uczniom korzystającym z bezpiecznych przewozów szkolnych.</p>
+    <section id="rozklad-seo-content" class="rozklad-seo-content" style="margin-top: 50px; line-height: 1.8; color: #444;">
+        <div class="container">
+            <h2 style="color: var(--dark); margin-bottom: 20px;">Rozkład Jazdy Pas-Trans – Sprawdź Godziny Odjazdów</h2>
+            
+            <p>Szukasz pewnego transportu w regionie? <strong>Pas-Trans Marcin Pastuch</strong> zapewnia regularne połączenia autobusowe, łącząc kluczowe miejscowości Dolnego Śląska. Nasz <strong>rozkład jazdy</strong> został opracowany tak, aby ułatwić codzienną komunikację mieszkańcom, pracownikom oraz uczniom korzystającym z bezpiecznych przewozów szkolnych.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
-            <div>
-                <h3 style="color: var(--primary);"><i class="icon-direction"></i> Obsługiwane Kierunki i Linie</h3>
-                <p>Nasza sieć połączeń obejmuje dwie główne arterie komunikacyjne w powiatach lubańskim, lwóweckim i zgorzeleckim:</p>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="margin-bottom: 10px;"><strong>Linia:</strong> Miłoszów – Leśna – Gryfów Śląski – Biedrzychowice – Lubań.</li>
-                    <li style="margin-bottom: 10px;"><strong>Linia:</strong> Zgorzelec – Sulików – Lubań – Olszyna – Gryfów Śląski.</li>
-                    <li style="margin-bottom: 10px;"><strong>Linia 217:</strong> Lubań – Olszyna – Ubocze – Gryfów Śląśki – Jelenia Góra.</li>
-                </ul>
-                <div style="background: #fff9e6; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; margin-top: 20px;">
-                    <h4 style="margin-top: 0; color: #856404;">Wybierz lokalną jakość i uczciwe ceny</h4>
-                    <p style="font-size: 0.95rem; margin-bottom: 0;">Zanim pojawiliśmy się na trasie <strong>Gryfów – Lubań</strong>, pasażerowie byli skazani na wysokie ceny (blisko 200 zł za bilet miesięczny) i przepełnione pojazdy. Dziś oferujemy bilet miesięczny już od <strong>80 zł</strong>, gwarantując każdemu <strong>miejsce siedzące</strong> oraz punktualny dojazd do szkół średnich, w tym ZSP im. A. Mickiewicza.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div>
+                    <h3 style="color: var(--primary);"><i class="icon-direction"></i> Obsługiwane Kierunki i Linie</h3>
+                    <p>Nasza sieć połączeń obejmuje dwie główne arterie komunikacyjne w powiatach lubańskim, lwóweckim i zgorzeleckim:</p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 10px;"><strong>Linia:</strong> Miłoszów – Leśna – Gryfów Śląski – Biedrzychowice – Lubań.</li>
+                        <li style="margin-bottom: 10px;"><strong>Linia:</strong> Zgorzelec – Sulików – Lubań – Olszyna – Gryfów Śląski.</li>
+                        <li style="margin-bottom: 10px;"><strong>Linia 217:</strong> Lubań – Olszyna – Ubocze – Gryfów Śląśki – Jelenia Góra.</li>
+                    </ul>
+                    <div style="background: #fff9e6; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; margin-top: 20px;">
+                        <h4 style="margin-top: 0; color: #856404;">Wybierz lokalną jakość i uczciwe ceny</h4>
+                        <p style="font-size: 0.95rem; margin-bottom: 0;">Zanim pojawiliśmy się na trasie <strong>Gryfów – Lubań</strong>, pasażerowie byli skazani na wysokie ceny (blisko 200 zł za bilet miesięczny) i przepełnione pojazdy. Dziś oferujemy bilet miesięczny już od <strong>80 zł</strong>, gwarantując każdemu <strong>miejsce siedzące</strong> oraz punktualny dojazd do szkół średnich, w tym ZSP im. A. Mickiewicza.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--primary);"><i class="icon-info-circled"></i> Dlaczego Pas-Trans to lepszy wybór?</h3>
+                    <p>Jako lokalna firma stawiamy na transparentność i szacunek do pasażera. Nie stosujemy sztucznych blokad na przystankach ani innych nieuczciwych praktyk – skupiamy się na jakości:</p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li><strong>✓ Komfort:</strong> Nowoczesne pojazdy z klimatyzacją i wolnymi miejscami(koniec z jazdą w ścisku ;)).</li>
+                        <li><strong>✓ Technologia:</strong> Zakup biletu przez telefon i automatyczny druk u kierowcy.</li>
+                        <li><strong>✓ Punktualność:</strong> Realne godziny odjazdów, bez spóźnień na lekcje czy do pracy.</li>
+                        <li><strong>✓ Oszczędność:</strong> Stałe, niskie ceny biletów jednorazowych (4-5 zł) i miesięcznych.</li>
+                    </ul>
                 </div>
             </div>
 
-            <div>
-                <h3 style="color: var(--primary);"><i class="icon-info-circled"></i> Dlaczego Pas-Trans to lepszy wybór?</h3>
-                <p>Jako lokalna firma stawiamy na transparentność i szacunek do pasażera. Nie stosujemy sztucznych blokad na przystankach ani innych nieuczciwych praktyk – skupiamy się na jakości:</p>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li><strong>✓ Komfort:</strong> Nowoczesne pojazdy z klimatyzacją i wolnymi miejscami(koniec z jazdą w ścisku ;)).</li>
-                    <li><strong>✓ Technologia:</strong> Zakup biletu przez telefon i automatyczny druk u kierowcy.</li>
-                    <li><strong>✓ Punktualność:</strong> Realne godziny odjazdów, bez spóźnień na lekcje czy do pracy.</li>
-                    <li><strong>✓ Oszczędność:</strong> Stałe, niskie ceny biletów jednorazowych (4-5 zł) i miesięcznych.</li>
-                </ul>
+            <div style="background: var(--light); padding: 30px; border-radius: 10px; margin-top: 40px; border-left: 5px solid var(--primary);">
+                <h4 style="margin-top: 0;">Komunikacja regionalna bez kompromisów</h4>
+                <p>Stale monitorujemy potrzeby pasażerów, aby nasze <strong>połączenia autobusowe Zgorzelec - Sulików- Lubań - Olszyna - Biedrzychowice - Gryfów oraz Miłoszów - Leśna - Złoty Potok - Gryfów - Biedrzychowice</strong> były wzorem solidności. Nie daj się zwieść nagłym, czasowym obniżkom cen, które pojawiają się tylko tam, gdzie my jeździmy. Postaw na stabilnego, lokalnego przewoźnika, który od początku walczy o niższe koszty Twoich dojazdów. Jeśli masz pytania o bilety miesięczne, dzwoń pod numer: <strong>665 339 661</strong>.</p>
+                <p style="margin-bottom: 0;"><em>Uwaga: Bilety miesięczne na trasach Miłoszów, Leśna, Biedrzychowice dostępne w atrakcyjnych cenach już od 70-85 zł.</em></p>
             </div>
         </div>
+    </section>
 
-        <div style="background: var(--light); padding: 30px; border-radius: 10px; margin-top: 40px; border-left: 5px solid var(--primary);">
-            <h4 style="margin-top: 0;">Komunikacja regionalna bez kompromisów</h4>
-            <p>Stale monitorujemy potrzeby pasażerów, aby nasze <strong>połączenia autobusowe Zgorzelec - Sulików- Lubań - Olszyna - Biedrzychowice - Gryfów oraz Miłoszów - Leśna - Złoty Potok - Gryfów - Biedrzychowice</strong> były wzorem solidności. Nie daj się zwieść nagłym, czasowym obniżkom cen, które pojawiają się tylko tam, gdzie my jeździmy. Postaw na stabilnego, lokalnego przewoźnika, który od początku walczy o niższe koszty Twoich dojazdów. Jeśli masz pytania o bilety miesięczne, dzwoń pod numer: <strong>665 339 661</strong>.</p>
-            <p style="margin-bottom: 0;"><em>Uwaga: Bilety miesięczne na trasach Miłoszów, Leśna, Biedrzychowice dostępne w atrakcyjnych cenach już od 70-85 zł.</em></p>
-        </div>
-    </div>
-</section>
+    <section id="faq-rozklad" class="container" style="margin-bottom: 60px;">
+        <h2 class="section-title">Rozkład Jazdy i Bilety – Pytania</h2>
+        <div class="faq-wrapper">
+            <div class="faq-item">
+                <button class="faq-question">Gdzie kupię bilet miesięczny na trasie Lubań – Zgorzelec? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>Bilety miesięczne na trasie <strong>Zgorzelec – Sulików – Lubań – Olszyna – Gryfów Śląski</strong> możesz kupić bezpośrednio u kierowcy. Oferujemy nowoczesny system płatności – wystarczy podać dane przez telefon, a kierowca wydrukuje gotowy bilet na miejscu. Ceny biletów miesięcznych dla uczniów i pracowników zaczynają się już od <strong>85 zł</strong>, co jest najtańszą opcją w regionie.</p>
+                </div>
+            </div>
 
-<section id="faq-rozklad" class="container" style="margin-bottom: 60px;">
-    <h2 class="section-title">Rozkład Jazdy i Bilety – Pytania</h2>
-    <div class="faq-wrapper">
-        <div class="faq-item">
-            <button class="faq-question">Gdzie kupię bilet miesięczny na trasie Lubań – Zgorzelec? <span class="faq-icon">+</span></button>
-            <div class="faq-answer">
-                <p>Bilety miesięczne na trasie <strong>Zgorzelec – Sulików – Lubań – Olszyna – Gryfów Śląski</strong> możesz kupić bezpośrednio u kierowcy. Oferujemy nowoczesny system płatności – wystarczy podać dane przez telefon, a kierowca wydrukuje gotowy bilet na miejscu. Ceny biletów miesięcznych dla uczniów i pracowników zaczynają się już od <strong>85 zł</strong>, co jest najtańszą opcją w regionie.</p>
+            <div class="faq-item">
+                <button class="faq-question">Czy linia Miłoszów – Leśna – Lubań gwarantuje miejsca siedzące? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>Tak! W Pas-Trans stawiamy na komfort. W przeciwieństwie do innych przewoźników na trasie <strong>Miłoszów – Leśna – Złoty Potok – Gryfów – Lubań</strong>, dbamy o to, aby nasi pasażerowie nie podróżowali w ścisku. Nasza nowoczesna flota busów i autokarów gwarantuje każdemu <strong>miejsce siedzące</strong> oraz pełną klimatyzację, co jest kluczowe przy codziennych dojazdach do szkoły czy pracy.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Jakie miejscowości obsługuje autobus szkolny do Lubania? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>Nasze linie szkolne i pracownicze obsługują szeroki obszar powiatu lubańskiego i zgorzeleckiego. Główne przystanki to: <strong>Miłoszów, Leśna, Złoty Potok, Gryfów Śląski, Biedrzychowice, Olszyna, Sulików oraz Zgorzelec</strong>. Rozkład jazdy jest dopasowany do godzin rozpoczęcia lekcji w szkołach średnich w Lubaniu i Gryfowie, zapewniając punktualność bez ryzyka spóźnień.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Ile kosztuje bilet jednorazowy i czy są zniżki dla uczniów? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>Ceny biletów jednorazowych na naszych trasach (np. <strong>Gryfów Śląski – Lubań</strong> czy <strong>Zgorzelec – Lubań</strong>) oscylują w granicach 4-5 zł. Największe oszczędności przynoszą jednak bilety miesięczne szkolne, których cena wynosi od <strong>80 zł</strong>. Jesteśmy lokalnym przewoźnikiem, który od lat walczy o najniższe koszty transportu dla mieszkańców <strong>Dolnego Śląska</strong>.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="faq-item">
-            <button class="faq-question">Czy linia Miłoszów – Leśna – Lubań gwarantuje miejsca siedzące? <span class="faq-icon">+</span></button>
-            <div class="faq-answer">
-                <p>Tak! W Pas-Trans stawiamy na komfort. W przeciwieństwie do innych przewoźników na trasie <strong>Miłoszów – Leśna – Złoty Potok – Gryfów – Lubań</strong>, dbamy o to, aby nasi pasażerowie nie podróżowali w ścisku. Nasza nowoczesna flota busów i autokarów gwarantuje każdemu <strong>miejsce siedzące</strong> oraz pełną klimatyzację, co jest kluczowe przy codziennych dojazdach do szkoły czy pracy.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">Jakie miejscowości obsługuje autobus szkolny do Lubania? <span class="faq-icon">+</span></button>
-            <div class="faq-answer">
-                <p>Nasze linie szkolne i pracownicze obsługują szeroki obszar powiatu lubańskiego i zgorzeleckiego. Główne przystanki to: <strong>Miłoszów, Leśna, Złoty Potok, Gryfów Śląski, Biedrzychowice, Olszyna, Sulików oraz Zgorzelec</strong>. Rozkład jazdy jest dopasowany do godzin rozpoczęcia lekcji w szkołach średnich w Lubaniu i Gryfowie, zapewniając punktualność bez ryzyka spóźnień.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question">Ile kosztuje bilet jednorazowy i czy są zniżki dla uczniów? <span class="faq-icon">+</span></button>
-            <div class="faq-answer">
-                <p>Ceny biletów jednorazowych na naszych trasach (np. <strong>Gryfów Śląski – Lubań</strong> czy <strong>Zgorzelec – Lubań</strong>) oscylują w granicach 4-5 zł. Największe oszczędności przynoszą jednak bilety miesięczne szkolne, których cena wynosi od <strong>80 zł</strong>. Jesteśmy lokalnym przewoźnikiem, który od lat walczy o najniższe koszty transportu dla mieszkańców <strong>Dolnego Śląska</strong>.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <ContactPanel />
-    <Footer />
-
-<div id="cookie-banner" class="cookie-overlay">
-    <div class="cookie-container">
-        <h3>Polityka Prywatności</h3>
-        <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-        <div class="cookie-btns">
-            <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-            <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-        </div>
-    </div>
-</div>
-
-<script is:inline src="/js/scripts.js"></script>
-
-<a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-    <i class="icon-phone"></i>
-</a> 
-</body>
-</html>
+</BaseLayout>

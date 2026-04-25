@@ -1,143 +1,126 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
+<BaseLayout
+    title="Aktualności i Galeria Wyjazdów - Pas-Trans"
+    description="Dowiedz się, co słychać w Pas-Trans. Zobacz relacje z naszych ostatnich wyjazdów transportowych."
+    canonical="https://autokarypastrans.pl/aktualnosci/"
+    ogTitle="Aktualności Pas-Trans - Relacje z tras"
+    ogDescription="Sprawdź gdzie ostatnio byliśmy i jakie nowości przygotowaliśmy."
+    ogImage="/logo.png"
+    ogUrl="https://autokarypastrans.pl/aktualnosci/"
+>
+    <Fragment slot="head">
+        <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
+        <style>
+            /* Nowe style dla sekcji Bloga w stylu przesłanych zdjęć */
+            .blog-header-section {
+                background-color: var(--primary);
+                color: white;
+                padding: 80px 20px;
+                text-align: left;
+                margin-bottom: 50px;
+            }
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktualności i Galeria Wyjazdów - Pas-Trans</title>
-    <meta name="description" content="Dowiedz się, co słychać w Pas-Trans. Zobacz relacje z naszych ostatnich wyjazdów transportowych." />
-    <link rel="canonical" href="https://autokarypastrans.pl/aktualnosci/" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
+            .blog-header-section h1 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-    <meta property="og:title" content="Aktualności Pas-Trans - Relacje z tras" />
-    <meta property="og:description" content="Sprawdź gdzie ostatnio byliśmy i jakie nowości przygotowaliśmy." />
-    <meta property="og:image" content="/logo.png" />
-    <meta property="og:url" content="https://autokarypastrans.pl/aktualnosci/" />
-    <meta property="og:type" content="website" />
-    
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Nowe style dla sekcji Bloga w stylu przesłanych zdjęć */
-        .blog-header-section {
-            background-color: var(--primary);
-            color: white;
-            padding: 80px 20px;
-            text-align: left;
-            margin-bottom: 50px;
-        }
+            .blog-header-section p {
+                font-size: 1.2rem;
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+                opacity: 0.9;
+            }
 
-        .blog-header-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+            .blog-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 30px;
+                margin-bottom: 60px;
+            }
 
-        .blog-header-section p {
-            font-size: 1.2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-        }
+            .blog-card {
+                background: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                display: flex;
+                flex-direction: column;
+                transition: transform 0.3s ease;
+                border: 1px solid #eee;
+            }
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
+            .blog-card:hover {
+                transform: translateY(-5px);
+            }
 
-        .blog-card {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-            border: 1px solid #eee;
-        }
+            .blog-card-image {
+                width: 100%;
+                height: 200px;
+                background-color: #ddd;
+                background-image: url('/galeria/sub_hero.webp'); 
+                background-size: cover;
+                background-position: center;
+            }
 
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
+            .blog-card-content {
+                padding: 25px;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+            }
 
-        /* Placeholder dla zdjęcia (na wzór Twoich screenów) */
-        .blog-card-image {
-            width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            background-image: url('/galeria/sub_hero.webp'); 
-            background-size: cover;
-            background-position: center;
-        }
+            .blog-card-content .date {
+                color: #888;
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+                display: block;
+            }
 
-        .blog-card-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+            .blog-card-content h3 {
+                font-size: 1.4rem;
+                color: var(--dark);
+                margin-bottom: 15px;
+                line-height: 1.3;
+            }
 
-        .blog-card-content .date {
-            color: #888;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            display: block;
-        }
+            .blog-card-content p {
+                color: #666;
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
 
-        .blog-card-content h3 {
-            font-size: 1.4rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
+            .btn-read-more {
+                background-color: var(--primary);
+                color: white;
+                padding: 12px 25px;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                display: inline-block;
+                align-self: flex-start;
+                margin-top: auto;
+                transition: background 0.3s;
+            }
 
-        .blog-card-content p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
+            .btn-read-more:hover {
+                background-color: var(--dark);
+            }
 
-        .btn-read-more {
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            align-self: flex-start;
-            margin-top: auto;
-            transition: background 0.3s;
-        }
-
-        .btn-read-more:hover {
-            background-color: var(--dark);
-        }
-
-        @media (max-width: 768px) {
-            .blog-header-section h1 { font-size: 1.8rem; }
-            .blog-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
+            @media (max-width: 768px) {
+                .blog-header-section h1 { font-size: 1.8rem; }
+                .blog-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+    </Fragment>
 
     <nav id="menu">
         <div class="container menu-flex">
@@ -169,16 +152,6 @@ import Footer from '../../components/Footer.astro';
 
     <main class="container" id="blog">
         <div class="blog-grid">
-
-            <article class="blog-card">
-                <div class="blog-card-image" style="background-image: url('/aktualnosci/galeria/6.webp');"></div>
-                <div class="blog-card-content">
-                    <span class="date">1.09.2025</span>
-                    <h3>Nowość! linia autobusowa nr 217: Lubań - Zgorzelec</h3>
-                    <p>Od 1 kwietnia Pas-Trans będzie obsługiwał linię autobusową łączącą Lubań z Jelenią Górą - to nie prima aprilis 🥳! Serdecznie zapraszamy do zapoznania sie z naszym rozkładem jazdy. Kliknij przycisk poniżej i sprawdź! .</p>
-                    <a href="/rozklad-jazdy/" class="btn-read-more">Rozkład jazdy</a>
-                </div>
-            </article>
             
             <article class="blog-card">
                 <div class="blog-card-image" style="background-image: url('/aktualnosci/galeria/1.webp');"></div>
@@ -239,28 +212,6 @@ import Footer from '../../components/Footer.astro';
                     <a href="/#o-nas" class="btn-read-more">O nas</a>
                 </div>
             </article>
-
         </div>
     </main>
-    
-    <ContactPanel />
-    <Footer />
-        
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-
-    <script is:inline src="/js/scripts.js"></script>
-
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

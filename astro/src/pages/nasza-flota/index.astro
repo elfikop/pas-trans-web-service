@@ -1,188 +1,173 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
+<BaseLayout
+    title="Nasza Flota - Nowoczesne Autokary i Busy | Pas-Trans"
+    description="Zobacz nasze pojazdy! Posiadamy nowoczesne autokary Scania oraz luksusowe busy Mercedes."
+    canonical="https://autokarypastrans.pl/nasza-flota/"
+    ogTitle="Nasza Flota - Zobacz czym podróżujesz z Pas-Trans"
+    ogDescription="Nowoczesne pojazdy od 8 do 50 miejsc. Poznaj standard naszych autokarów."
+    ogImage="/nasza-flota/m1.webp"
+    ogUrl="https://autokarypastrans.pl/nasza-flota/"
+    ogType="website"
+>
+    <Fragment slot="head">
+        <style>
+            /* Bazowa stylizacja elementu floty */
+            .flota-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 50px;
+                margin-bottom: 80px;
+                padding: 30px;
+                border-radius: 20px;
+                background: transparent;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s ease-out;
+            }
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nasza Flota - Nowoczesne Autokary i Busy | Pas-Trans</title>
-    <meta name="description" content="Zobacz nasze pojazdy! Posiadamy nowoczesne autokary Scania oraz luksusowe busy Mercedes." />
-    <link rel="canonical" href="https://autokarypastrans.pl/nasza-flota/" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
+            .flota-item.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
 
-    <meta property="og:title" content="Nasza Flota - Zobacz czym podróżujesz z Pas-Trans" />
-    <meta property="og:description" content="Nowoczesne pojazdy od 8 do 50 miejsc. Poznaj standard naszych autokarów." />
-    <meta property="og:image" content="/nasza-flota/m1.webp" />
-    <meta property="og:url" content="https://autokarypastrans.pl/nasza-flota/" />
-    <meta property="og:type" content="website" />
-    
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Bazowa stylizacja elementu floty */
-        .flota-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 50px;
-            margin-bottom: 80px;
-            padding: 30px;
-            border-radius: 20px;
-            background: transparent;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
+            /* Układ naprzemienny na desktopie */
+            .flota-item:nth-child(even) {
+                flex-direction: row-reverse;
+            }
 
-        .flota-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Układ naprzemienny na desktopie */
-        .flota-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .flota-gallery-container {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .main-img-wrapper {
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            background: #eee;
-        }
-
-        .main-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.3s ease;
-        }
-
-        .thumbnails {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .thumbnails img {
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            opacity: 0.7;
-        }
-
-        .thumbnails img:hover {
-            opacity: 1;
-        }
-
-        .thumbnails img.active-thumb {
-            border-color: var(--primary);
-            opacity: 1;
-            transform: scale(1.05);
-        }
-
-        .flota-info {
-            flex: 1;
-        }
-
-        .vehicle-badge {
-            background: var(--primary);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .flota-info h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .spec-box {
-            background: var(--light);
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .spec-box i {
-            color: var(--primary);
-            margin-right: 8px;
-        }
-
-        /* --- AKCENT MOBILNY (TELEFONY I TABLETY) --- */
-        @media (max-width: 992px) {
-            .flota-item, .flota-item:nth-child(even) {
+            .flota-gallery-container {
+                flex: 1.2;
+                display: flex;
                 flex-direction: column;
-                background: #ffffff;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-                border: 1px solid #f0f0f0;
-                padding: 20px;
-                margin-bottom: 40px;
-                gap: 20px;
-            }
-
-            .flota-info {
-                text-align: center;
-                width: 100%;
-            }
-
-            .flota-info h2 {
-                font-size: 1.8rem;
-                margin-top: 5px;
+                gap: 15px;
             }
 
             .main-img-wrapper {
-                height: 280px;
+                width: 100%;
+                height: 400px;
+                overflow: hidden;
+                border-radius: 15px;
+                box-shadow: var(--shadow);
+                background: #eee;
+            }
+
+            .main-img-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: opacity 0.3s ease;
+            }
+
+            .thumbnails {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
             .thumbnails img {
-                width: 60px;
-                height: 45px;
+                width: 80px;
+                height: 60px;
+                object-fit: cover;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                opacity: 0.7;
+            }
+
+            .thumbnails img:hover {
+                opacity: 1;
+            }
+
+            .thumbnails img.active-thumb {
+                border-color: var(--primary);
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            .flota-info {
+                flex: 1;
+            }
+
+            .vehicle-badge {
+                background: var(--primary);
+                color: white;
+                padding: 5px 15px;
+                border-radius: 50px;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                font-weight: bold;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+
+            .flota-info h2 {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+                color: var(--dark);
             }
 
             .specs-grid {
-                text-align: left;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-top: 20px;
             }
-        }
-    </style>
-</head>
-<body>
+
+            .spec-box {
+                background: var(--light);
+                padding: 12px;
+                border-radius: 8px;
+                border-left: 3px solid var(--primary);
+                font-size: 0.9rem;
+            }
+
+            .spec-box i {
+                color: var(--primary);
+                margin-right: 8px;
+            }
+
+            /* --- AKCENT MOBILNY (TELEFONY I TABLETY) --- */
+            @media (max-width: 992px) {
+                .flota-item, .flota-item:nth-child(even) {
+                    flex-direction: column;
+                    background: #ffffff;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                    border: 1px solid #f0f0f0;
+                    padding: 20px;
+                    margin-bottom: 40px;
+                    gap: 20px;
+                }
+
+                .flota-info {
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .flota-info h2 {
+                    font-size: 1.8rem;
+                    margin-top: 5px;
+                }
+
+                .main-img-wrapper {
+                    height: 280px;
+                }
+
+                .thumbnails img {
+                    width: 60px;
+                    height: 45px;
+                }
+
+                .specs-grid {
+                    text-align: left;
+                }
+            }
+        </style>
+    </Fragment>
 
     <nav id="menu">
         <div class="container menu-flex">
@@ -293,20 +278,6 @@ import Footer from '../../components/Footer.astro';
         </div>
     </section>
 
-    <ContactPanel />
-    <Footer />
-
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-
     <script is:inline>
         function changePhoto(mainImgId, newSrc, thumbElement) {
             const mainImg = document.getElementById(mainImgId);
@@ -316,7 +287,6 @@ import Footer from '../../components/Footer.astro';
                 mainImg.src = newSrc;
                 mainImg.style.opacity = '1';
             }, 300);
-
             const parentThumbContainer = thumbElement.parentElement;
             parentThumbContainer.querySelectorAll('img').forEach(img => {
                 img.classList.remove('active-thumb');
@@ -332,13 +302,7 @@ import Footer from '../../components/Footer.astro';
                 }
             });
         }, observerOptions);
-
         document.querySelectorAll('.flota-item').forEach(item => observer.observe(item));
     </script>
-    <script is:inline src="/js/scripts.js"></script>
 
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

@@ -301,7 +301,7 @@ body {
 
 /* --- POPRAWIONA SEKCJA HERO --- */
 #hero {
-    background: var(--light) url('funky-lines-1.png');
+    background: var(--light) url('/funky-lines-1.png');
     background-blend-mode: overlay;
     padding: 100px 0; /* Więcej oddechu góra/dół */
 }
@@ -389,7 +389,7 @@ body {
 #hero-subwebsite {
     position: relative;
     /* Tutaj podlinkuj swoje zdjęcie tła */
-    background: url('galeria/sub_hero.webp') no-repeat center center;
+    background: url('/galeria/sub_hero.webp') no-repeat center center;
     background-size: cover;
     min-height: 400px;
     display: flex;
@@ -1265,4 +1265,40 @@ html {
    krycie, by pomarańcz przebijał od spodu i dawał spójny efekt */
 .social-dot:hover img {
     opacity: 0.4; 
+}
+.miasta-pills {
+    display: flex;
+    flex-wrap: wrap; /* Pozwala elementom przechodzić do nowej linii */
+    gap: 12px; /* Odstęp między przyciskami */
+    justify-content: center; /* Wyśrodkowanie przycisków */
+    max-width: 900px; /* Zapobiega rozciąganiu się na całą szerokość ekranu na dużych monitorach */
+    margin: 0 auto; /* Centruje cały kontener */
+}
+
+.miasto-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    border-radius: 30px; /* Zaokrąglone krawędzie (pigułka) */
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.miasto-pill i {
+    margin-right: 6px;
+    color: var(--primary, #fecb2f); /* Ikona w kolorze przewodnim marki */
+    font-size: 1.1rem;
+}
+
+/* Efekt po najechaniu myszką */
+.miasto-pill:hover {
+    background-color: var(--primary, #fecb2f);
+    border-color: var(--primary, #fecb2f);
+    color: #111;
+    transform: translateY(-2px); /* Delikatne uniesienie przycisku */
 }

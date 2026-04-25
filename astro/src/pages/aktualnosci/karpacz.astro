@@ -1,36 +1,21 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import NavbarArticle from '../../components/NavbarArticle.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busy do Karpacza - Wynajem busów 9-osobowych | Pas-Trans</title>
-    <meta name="description" content="Planujesz narty w Karpaczu? Oferujemy bezpieczny wynajem busów 9-osobowych z kierowcą. Odbiór spod drzwi: Gryfów, Lubań, Zgorzelec i okolice." />
-    <link rel="canonical" href="https://autokarypastrans.pl/aktualnosci/karpacz.html" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
-
-    <meta property="og:title" content="Kierunek Góry! Komfortowe busy do Karpacza z Pas-Trans" />
-    <meta property="og:description" content="Bezpieczne wyjazdy narciarskie i turystyczne dla rodzin i grup. Sprawdź naszą ofertę wynajmu busów 9-osobowych." />
-    <meta property="og:image" content="/aktualnosci/galeria/4.webp" />
-    <meta property="og:url" content="https://autokarypastrans.pl/aktualnosci/karpacz.html" />
-    <meta property="og:type" content="article" />
-    
-    <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-</head>
-<body>
+<BaseLayout
+    title="Busy do Karpacza - Wynajem busów 9-osobowych | Pas-Trans"
+    description="Planujesz narty w Karpaczu? Oferujemy bezpieczny wynajem busów 9-osobowych z kierowcą. Odbiór spod drzwi: Gryfów, Lubań, Zgorzelec i okolice."
+    canonical="https://autokarypastrans.pl/aktualnosci/karpacz.html"
+    ogTitle="Kierunek Góry! Komfortowe busy do Karpacza z Pas-Trans"
+    ogDescription="Bezpieczne wyjazdy narciarskie i turystyczne dla rodzin i grup. Sprawdź naszą ofertę wynajmu busów 9-osobowych."
+    ogImage="/aktualnosci/galeria/4.webp"
+    ogUrl="https://autokarypastrans.pl/aktualnosci/karpacz.html"
+    ogType="article"
+>
+    <Fragment slot="head">
+        <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
+    </Fragment>
 
     <NavbarArticle />
     
@@ -95,25 +80,4 @@ import Footer from '../../components/Footer.astro';
 
         </article>
     </main>
-
-    <ContactPanel />
-        
-    <Footer />
-
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-
-    <script is:inline src="/js/scripts.js"></script>
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

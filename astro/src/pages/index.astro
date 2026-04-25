@@ -1,81 +1,80 @@
 ---
-import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
-import ContactPanel from '../components/ContactPanel.astro';
-import Footer from '../components/Footer.astro';
+import { getImage } from 'astro:assets';
+
+// 1. Astro bierze WSZYSTKO co wrzucisz do tego folderu
+const imageFiles = import.meta.glob('/src/assets/slider/*.{jpeg,jpg,png,webp}', { eager: true });
+
+// 2. Od razu optymalizuje do WebP (nie musimy niczego filtrować, bo są tu tylko zdjęcia z galerii)
+const sliderImages = await Promise.all(
+    Object.values(imageFiles).map(async (image) => {
+        return await getImage({
+            src: image.default,
+            format: 'webp',
+            quality: 85
+        });
+    })
+);
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "BusReservationService",
-        "description": "Profesjonalne usługi transportowe, wynajem autokarów i busów w Gryfowie Śląskim i na terenie Dolnego Śląska.",
-        "name": "Pas-Trans Marcin Pastuch",
-        "image": "https://autokarypastrans.pl/logo.png",
-        "@id": "https://autokarypastrans.pl",
-        "url": "https://autokarypastrans.pl",
-        "telephone": "+48665339661",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "ul. Spacerowa 15",
-            "addressLocality": "Gryfów Śląski",
-            "postalCode": "59-620",
-            "addressCountry": "PL"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 51.03229, 
-            "longitude": 15.40075
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-            ],
-            "opens": "06:00",
-            "closes": "21:00"
-        },
-        "sameAs": [
-            "https://www.facebook.com/people/Autokary-Pas-Trans/61564448867373/",
-            "https://maps.app.goo.gl/jZFyQMyLojn7JNpE9"
-        ]
-        }
-    </script>
-    
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pas-Trans Marcin Pastuch - Wynajem Autokarów i Transport</title>
-    <meta name="description" content="Profesjonalne usługi transportowe Pas-Trans. Wynajem autokarów, busów 9-osobowych oraz przewozy szkolne w Gryfowie Śląskim i na całym Dolnym Śląsku." />
-    <meta name="keywords" content="autobus, transport, pas-trans, marcin pastuch, wynajem autokarów, Gryfów Śląski, przewozy szkolne, wynajem busa"/>
-    <link rel="canonical" href="https://autokarypastrans.pl/" />
-    <link rel="icon" href="https://autokarypastrans.pl/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://autokarypastrans.pl/logo.png">
-
-    <meta property="og:title" content="Pas-Trans Marcin Pastuch - Usługi Transportowe" />
-    <meta property="og:description" content="Profesjonalne usługi transportowe i wynajem autokarów w Gryfowie Śląskim. Sprawdź naszą ofertę!" />
-    <meta property="og:image" content="https://autokarypastrans.pl/logo.png" />
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://autokarypastrans.pl/" />
-    <meta property="og:type" content="website" />
-
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+<BaseLayout 
+    title="Pas-Trans Marcin Pastuch - Wynajem Autokarów i Transport"
+    description="Profesjonalne usługi transportowe Pas-Trans. Wynajem autokarów, busów 9-osobowych oraz przewozy szkolne w Gryfowie Śląskim i na całym Dolnym Śląsku."
+    keywords="autobus, transport, pas-trans, marcin pastuch, wynajem autokarów, Gryfów Śląski, przewozy szkolne, wynajem busa"
+    canonical="https://autokarypastrans.pl/"
+    ogTitle="Pas-Trans Marcin Pastuch - Usługi Transportowe"
+    ogDescription="Profesjonalne usługi transportowe i wynajem autokarów w Gryfowie Śląskim. Sprawdź naszą ofertę!"
+    ogUrl="https://autokarypastrans.pl/"
+>
+    <Fragment slot="head">
+        <script type="application/ld+json">
+            {
+            "@context": "https://schema.org",
+            "@type": "BusReservationService",
+            "description": "Profesjonalne usługi transportowe, wynajem autokarów i busów w Gryfowie Śląskim i na terenie Dolnego Śląska.",
+            "name": "Pas-Trans Marcin Pastuch",
+            "image": "https://autokarypastrans.pl/logo.png",
+            "@id": "https://autokarypastrans.pl",
+            "url": "https://autokarypastrans.pl",
+            "telephone": "+48665339661",
+            "priceRange": "$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "ul. Spacerowa 15",
+                "addressLocality": "Gryfów Śląski",
+                "postalCode": "59-620",
+                "addressCountry": "PL"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 51.03229, 
+                "longitude": 15.40075
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+                ],
+                "opens": "06:00",
+                "closes": "21:00"
+            },
+            "sameAs": [
+                "https://www.facebook.com/people/Autokary-Pas-Trans/61564448867373/",
+                "https://maps.app.goo.gl/jZFyQMyLojn7JNpE9"
+            ]
+            }
+        </script>
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+    </Fragment>
 
     <Navbar />
 
@@ -124,7 +123,7 @@ import Footer from '../components/Footer.astro';
                     <li><strong>Nowoczesna flota:</strong> Autokary 8–50 miejsc (m.in. Scania oraz NOWOŚĆ 2025: luksusowy Mercedes 26 os.).</li>
                     <li><strong>Bezpieczeństwo:</strong> Doświadczeni kierowcy i regularnie serwisowane pojazdy.</li>
                     <li><strong>Doświadczenie:</strong> Punktualność i indywidualne podejście do każdego zlecenia.</li>
-                    </ul>
+                </ul>
                 <a href="/wynajem-autokaru/" class="btn">Szczegóły</a>
             </div>
             <div class="card">
@@ -153,18 +152,13 @@ import Footer from '../components/Footer.astro';
         <h2 class="section-title">Nasza Flota w obiektywie</h2>
         <div class="slider-wrapper">
             <div class="slider">
-                <div class="slide active"><img src="/galeria/1.webp" alt="Bus Pas-Trans 0" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/11.webp" alt="Bus Pas-Trans 11" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/2.webp" alt="Bus Pas-Trans 2" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/3.webp" alt="Bus Pas-Trans 3" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/4.webp" alt="Bus Pas-Trans 4" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/5.webp" alt="Bus Pas-Trans 5" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/6.webp" alt="Bus Pas-Trans 6" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/7.webp" alt="Bus Pas-Trans 7" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/8.webp" alt="Bus Pas-Trans 8" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/9.webp" alt="Bus Pas-Trans 9" loading="lazy"></div>
-                <div class="slide"><img src="/galeria/10.webp" alt="Bus Pas-Trans 10" loading="lazy"></div>
                 
+                {sliderImages.map((img, index) => (
+                    <div class={`slide ${index === 0 ? 'active' : ''}`}>
+                        <img src={img.src} alt={`Flota Pas-Trans - zdjęcie ${index + 1}`} loading="lazy" />
+                    </div>
+                ))}
+
                 <button class="prev" onclick="changeSlide(-1)">❮</button>
                 <button class="next" onclick="changeSlide(1)">❯</button>
             </div>
@@ -225,45 +219,35 @@ import Footer from '../components/Footer.astro';
         <p style="text-align: center; margin-bottom: 30px; color: #666;">
             Zapewniamy transport osób z największych miast regionu. Sprawdź szczegóły oferty dla Twojej miejscowości:
         </p>
-        <div class="miasta-grid">
-            <a href="/wynajem-autokaru/Gryfow-Slaski.html" class="miasto-card">
-                <i class="icon-location"></i>
-                <span>Gryfów Śląski</span>
+        
+        <div class="miasta-pills">
+            <a href="/wynajem-autokaru/Biedrzychowice/" class="miasto-pill">
+                <i class="icon-location"></i> Biedrzychowice
             </a>
-            <a href="/wynajem-autokaru/Luban.html" class="miasto-card">
-                <i class="icon-location"></i>
-                <span>Lubań</span>
+            <a href="/wynajem-autokaru/Bogatynia/" class="miasto-pill">
+                <i class="icon-location"></i> Bogatynia
             </a>
-            <a href="/wynajem-autokaru/Zgorzelec.html" class="miasto-card">
-                <i class="icon-location"></i>
-                <span>Zgorzelec</span>
+            <a href="/wynajem-autokaru/Boleslawiec/" class="miasto-pill">
+                <i class="icon-location"></i> Bolesławiec
             </a>
-            <a href="/wynajem-autokaru/Boleslawiec.html" class="miasto-card">
-                <i class="icon-location"></i>
-                <span>Bolesławiec</span>
+            <a href="/wynajem-autokaru/Gryfow-Slaski/" class="miasto-pill">
+                <i class="icon-location"></i> Gryfów Śląski
+            </a>
+            <a href="/wynajem-autokaru/Jelenia-Gora/" class="miasto-pill">
+                <i class="icon-location"></i> Jelenia Góra
+            </a>
+            <a href="/wynajem-autokaru/Luban/" class="miasto-pill">
+                <i class="icon-location"></i> Lubań
+            </a>
+            <a href="/wynajem-autokaru/Olszyna/" class="miasto-pill">
+                <i class="icon-location"></i> Olszyna
+            </a>
+            <a href="/wynajem-autokaru/Sulików/" class="miasto-pill">
+                <i class="icon-location"></i> Sulików
+            </a>
+            <a href="/wynajem-autokaru/Zgorzelec/" class="miasto-pill">
+                <i class="icon-location"></i> Zgorzelec
             </a>
         </div>
     </section>
-
-    <ContactPanel />
-
-    <Footer />
-
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-    
-    <script is:inline src="/js/scripts.js"></script>
-
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

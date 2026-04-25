@@ -1,51 +1,36 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wynajem Autokarów Lubań - Przewozy Osób | Pas-Trans</title>
-    <meta name="description" content="Szukasz transportu w Lubaniu? Oferujemy wynajem autokarów dla szkół, firm oraz na wesela. Bezpieczne i komfortowe przewozy z Lubania w atrakcyjnych cenach." />
-    <link rel="canonical" href="https://autokarypastrans.pl/wynajem-autokaru/Luban.html" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
-
-    <meta property="og:title" content="Wynajem Autokarów Lubań - Pas-Trans Marcin Pastuch" />
-    <meta property="og:description" content="Komfortowy wynajem autokarów w Lubaniu i okolicach. Obsługujemy wycieczki, wesela i transfery lotniskowe. Sprawdź naszą ofertę!" />
-    <meta property="og:image" content="/galeria/hero.webp" />
-    <meta property="og:url" content="https://autokarypastrans.pl/wynajem-autokaru/Luban.html" />
-    <meta property="og:type" content="website" />
-
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        .wynajem-content { padding: 60px 0; }
-        .feature-list { list-style: none; padding: 0; margin: 30px 0; }
-        .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
-        .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
-        
-        .cennik-wrapper { overflow-x: auto; margin: 40px 0; }
-        table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: var(--shadow); border-radius: 10px; overflow: hidden; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: var(--dark); color: var(--white); text-transform: uppercase; font-size: 0.9rem; }
-        tr:hover { background-color: #f9f9f9; }
-        
-        .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
-        .cta-section { text-align: center; background: var(--primary); color: white; padding: 40px; border-radius: 10px; margin-top: 50px; }
-        .cta-section h2 { color: white; margin-bottom: 20px; }
-        .cta-section .btn { background: var(--dark); border: none; }
-    </style>
-</head>
-<body>
+<BaseLayout
+    title="Wynajem Autokarów Lubań - Przewozy Osób | Pas-Trans"
+    description="Szukasz transportu w Lubaniu? Oferujemy wynajem autokarów dla szkół, firm oraz na wesela. Bezpieczne i komfortowe przewozy z Lubania w atrakcyjnych cenach."
+    canonical="https://autokarypastrans.pl/wynajem-autokaru/Luban.html"
+    ogTitle="Wynajem Autokarów Lubań - Pas-Trans Marcin Pastuch"
+    ogDescription="Komfortowy wynajem autokarów w Lubaniu i okolicach. Obsługujemy wycieczki, wesela i transfery lotniskowe. Sprawdź naszą ofertę!"
+    ogImage="/galeria/hero.webp"
+    ogUrl="https://autokarypastrans.pl/wynajem-autokaru/Luban.html"
+    ogType="website"
+>
+    <Fragment slot="head">
+        <style>
+            .wynajem-content { padding: 60px 0; }
+            .feature-list { list-style: none; padding: 0; margin: 30px 0; }
+            .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
+            .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
+            
+            .cennik-wrapper { overflow-x: auto; margin: 40px 0; }
+            table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: var(--shadow); border-radius: 10px; overflow: hidden; }
+            th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+            th { background: var(--dark); color: var(--white); text-transform: uppercase; font-size: 0.9rem; }
+            tr:hover { background-color: #f9f9f9; }
+            
+            .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
+            .cta-section { text-align: center; background: var(--primary); color: white; padding: 40px; border-radius: 10px; margin-top: 50px; }
+            .cta-section h2 { color: white; margin-bottom: 20px; }
+            .cta-section .btn { background: var(--dark); border: none; }
+        </style>
+    </Fragment>
 
     <nav id="menu">
         <div class="container menu-flex">
@@ -167,24 +152,4 @@ import Footer from '../../components/Footer.astro';
         </section>
     </main>
 
-    <ContactPanel />
-    <Footer />
-
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-    
-    <script is:inline src="/js/scripts.js"></script>
-
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

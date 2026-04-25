@@ -1,41 +1,26 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wynajem Autokarów Biedrzychowice - Transport i Przewozy | Pas-Trans</title>
-    <meta name="description" content="Szukasz autokaru w Biedrzychowicach? Pas-Trans oferuje bezpieczny wynajem autokarów i busów dla grup zorganizowanych, szkół i firm. Sprawdź naszą ofertę!" />
-    <link rel="canonical" href="https://autokarypastrans.pl/wynajem-autokaru/Biedrzychowice.html" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
-
-    <meta property="og:title" content="Wynajem Autokarów Biedrzychowice - Pas-Trans" />
-    <meta property="og:description" content="Profesjonalne usługi transportowe w Biedrzychowicach. Komfortowa flota i doświadczeni kierowcy." />
-    <meta property="og:image" content="/galeria/hero.webp" />
-    <meta property="og:url" content="https://autokarypastrans.pl/wynajem-autokaru/Biedrzychowice.html" />
-    <meta property="og:type" content="website" />
-
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        .wynajem-content { padding: 60px 0; }
-        .feature-list { list-style: none; padding: 0; margin: 30px 0; }
-        .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
-        .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
-        .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
-    </style>
-</head>
-<body>
+<BaseLayout
+    title="Wynajem Autokarów Biedrzychowice - Transport i Przewozy | Pas-Trans"
+    description="Szukasz autokaru w Biedrzychowicach? Pas-Trans oferuje bezpieczny wynajem autokarów i busów dla grup zorganizowanych, szkół i firm. Sprawdź naszą ofertę!"
+    canonical="https://autokarypastrans.pl/wynajem-autokaru/Biedrzychowice.html"
+    ogTitle="Wynajem Autokarów Biedrzychowice - Pas-Trans"
+    ogDescription="Profesjonalne usługi transportowe w Biedrzychowicach. Komfortowa flota i doświadczeni kierowcy."
+    ogImage="/galeria/hero.webp"
+    ogUrl="https://autokarypastrans.pl/wynajem-autokaru/Biedrzychowice.html"
+    ogType="website"
+>
+    <Fragment slot="head">
+        <style>
+            .wynajem-content { padding: 60px 0; }
+            .feature-list { list-style: none; padding: 0; margin: 30px 0; }
+            .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
+            .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
+            .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
+        </style>
+    </Fragment>
 
     <nav id="menu">
         <div class="container menu-flex">
@@ -127,12 +112,4 @@ import Footer from '../../components/Footer.astro';
         </section>
     </main>
 
-    <ContactPanel />
-    <Footer />
-
-    <script is:inline src="/js/scripts.js"></script>
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>

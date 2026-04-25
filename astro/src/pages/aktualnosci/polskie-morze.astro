@@ -1,35 +1,21 @@
 ---
-import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import NavbarArticle from '../../components/NavbarArticle.astro';
-import ContactPanel from '../../components/ContactPanel.astro';
-import Footer from '../../components/Footer.astro';
 ---
 
-<!DOCTYPE HTML>
-<html lang="pl">
-<head>
-    <GoogleAnalytics />
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autokarem nad morze - Przewozy na wakacje | Pas-Trans</title>
-    <meta name="description" content="Planujesz wakacje nad Bałtykiem? Oferujemy bezpieczny wynajem autokarów dla grup i kolonii. Sprawdź naszą ofertę przejazdów nad polskie morze." />
-    <link rel="canonical" href="https://autokarypastrans.pl/aktualnosci/polskie-morze.html" />
-    <link rel="icon" href="/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="/logo.png">
-
-    <meta property="og:title" content="Kierunek Bałtyk: Komfortowe przejazdy nad polskie morze" />
-    <meta property="og:description" content="Słońce, piasek i bezpieczna podróż z Pas-Trans. Sprawdź naszą ofertę wynajmu autokarów na wyjazdy wakacyjne." />
-    <meta property="og:image" content="/aktualnosci/galeria/2.webp" />
-    <meta property="og:url" content="https://autokarypastrans.pl/aktualnosci/polskie-morze.html" />
-    <meta property="og:type" content="article" />
-    
-    <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
-    <link rel="stylesheet" href="/style.css" type="text/css" />
-    <link rel="stylesheet" href="/css/fontello.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+<BaseLayout
+    title="Autokarem nad morze - Przewozy na wakacje | Pas-Trans"
+    description="Planujesz wakacje nad Bałtykiem? Oferujemy bezpieczny wynajem autokarów dla grup i kolonii. Sprawdź naszą ofertę przejazdów nad polskie morze."
+    canonical="https://autokarypastrans.pl/aktualnosci/polskie-morze.html"
+    ogTitle="Kierunek Bałtyk: Komfortowe przejazdy nad polskie morze"
+    ogDescription="Słońce, piasek i bezpieczna podróż z Pas-Trans. Sprawdź naszą ofertę wynajmu autokarów na wyjazdy wakacyjne."
+    ogImage="/aktualnosci/galeria/2.webp"
+    ogUrl="https://autokarypastrans.pl/aktualnosci/polskie-morze.html"
+    ogType="article"
+>
+    <Fragment slot="head">
+        <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
+    </Fragment>
 
     <NavbarArticle />
     
@@ -63,6 +49,7 @@ import Footer from '../../components/Footer.astro';
                     <strong>Wydajna klimatyzacja</strong>
                     <p>Podróż w upalne dni nie musi być męcząca. Nasze autokary są wyposażone w systemy klimatyzacji zapewniające optymalną temperaturę dla każdego pasażera.</p>
                 </div>
+                
                 <div class="benefit-card" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #fecb2f;">
                     <strong>Obszerne bagażniki</strong>
                     <p>Walizki, parawany, a nawet rowery – nasze luki bagażowe pomieszczą cały wakacyjny ekwipunek Twojej grupy.</p>
@@ -77,24 +64,4 @@ import Footer from '../../components/Footer.astro';
             <p>Wakacyjne terminy szybko się zapełniają. Skontaktuj się z nami, aby otrzymać indywidualną wycenę wyjazdu nad morze dla Twojej grupy.</p>
         </article>
     </main>
-
-    <ContactPanel />
-    <Footer />
-
-    <div id="cookie-banner" class="cookie-overlay">
-        <div class="cookie-container">
-            <h3>Polityka Prywatności</h3>
-            <p>Nasza strona korzysta z plików cookies w celu poprawy jakości usług. Czy wyrażasz zgodę na przetwarzanie danych zgodnie z naszą <a href="/regulamin.pdf">Polityką Prywatności</a>?</p>
-            <div class="cookie-btns">
-                <button id="cookie-accept" class="btn cookie-btn-accept">Akceptuję</button>
-                <button id="cookie-reject" class="btn cookie-btn-reject">Odrzucam</button>
-            </div>
-        </div>
-    </div>
-
-    <script is:inline src="/js/scripts.js"></script>
-    <a href="tel:665339661" class="floating-phone-btn" aria-label="Zadzwoń do nas">
-        <i class="icon-phone"></i>
-    </a> 
-</body>
-</html>
+</BaseLayout>
