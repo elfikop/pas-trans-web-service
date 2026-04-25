@@ -1,0 +1,58 @@
+---
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import FloatingPhone from '../components/FloatingPhone.astro';
+import '../styles/style.css';
+import '../styles/css/fontello.css';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource/josefin-sans/400.css';
+import '@fontsource/josefin-sans/600.css';
+
+const { 
+    title, 
+    description, 
+    keywords,
+    canonical, 
+    ogTitle, 
+    ogDescription, 
+    ogImage = "https://autokarypastrans.pl/logo.png", 
+    ogUrl, 
+    ogType = "website" 
+} = Astro.props;
+---
+
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <GoogleAnalytics />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="/logo.png">
+
+    <meta property="og:title" content={ogTitle || title} />
+    <meta property="og:description" content={ogDescription || description} />
+    <meta property="og:image" content={ogImage} />
+    {ogUrl && <meta property="og:url" content={ogUrl} />}
+    <meta property="og:type" content={ogType} />
+
+    <slot name="head" />
+</head>
+<body>
+    <slot />
+
+    <ContactPanel />
+    <Footer />
+    <CookieBanner />
+    <FloatingPhone />
+</body>
+</html>

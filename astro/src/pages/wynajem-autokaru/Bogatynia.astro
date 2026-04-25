@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+    title="Wynajem Autokarów Bogatynia - Przewozy Pracownicze i Turystyczne | Pas-Trans"
+    description="Profesjonalny wynajem autokarów w Bogatyni. Obsługujemy przewozy pracownicze dla przemysłu energetycznego, wycieczki szkolne oraz wyjazdy zagraniczne do Czech i Niemiec."
+    canonical="https://autokarypastrans.pl/wynajem-autokaru/Bogatynia.html"
+    ogTitle="Wynajem Autokarów Bogatynia - Pas-Trans Marcin Pastuch"
+    ogDescription="Komfortowy transport dla przemysłu i turystyki w Bogatyni. Sprawdź naszą ofertę wyjazdów międzynarodowych."
+    ogImage="/galeria/hero.webp"
+    ogUrl="https://autokarypastrans.pl/wynajem-autokaru/Bogatynia.html"
+    ogType="website"
+>
+    <Fragment slot="head">
+        <style>
+            .wynajem-content { padding: 60px 0; }
+            .feature-list { list-style: none; padding: 0; margin: 30px 0; }
+            .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
+            .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
+            .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
+        </style>
+    </Fragment>
+
+    <nav id="menu">
+        <div class="container menu-flex">
+            <div id="logo">
+                <a href="/"><img src="/logo.png" alt="Logo Pas-Trans"></a>
+            </div>
+            <button class="menu-toggle" aria-label="Otwórz menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">STRONA GŁÓWNA</a></li>
+                <li><a href="#oferta-bogatynia">OFERTA BOGATYNIA</a></li>
+                <li><a href="/aktualnosci/">AKTUALNOŚCI</a></li>
+                <li><a href="/#opinie">OPINIE</a></li>
+                <li><a href="/#galeria-slider">GALERIA</a></li>
+                <li><a href="/nasza-flota/">NASZA FLOTA</a></li>
+                <li><a href="#kontakt">KONTAKT</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header id="hero-subwebsite">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-center-box">
+                    <h1>Wynajem autokarów Bogatynia</h1>
+                </div>
+                <div class="hero-breadcrumb">
+                    PAS-TRANS — SPECJALISTYCZNY TRANSPORT W BOGATYNI
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container wynajem-content">
+        <h2 id="oferta-bogatynia" class="section-title">Niezawodny transport dla Bogatyni</h2>
+        <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            Obsługujemy strategiczny punkt na mapie Dolnego Śląska. <strong>Bogatynia</strong> to miasto przemysłu i turystyki przygranicznej – Pas-Trans dostarcza rozwiązania transportowe dopasowane do obu tych sektorów.
+        </p>
+
+        <div class="info-box">
+            <h3>Atuty współpracy w Bogatyni:</h3>
+            <ul class="feature-list">
+                <li><strong>Logistyka przemysłowa:</strong> Doświadczenie w obsłudze dużych kontraktów na przewozy pracownicze.</li>
+                <li><strong>Bliskość granic:</strong> Specjalizujemy się w wyjazdach do Niemiec (Zittau, Görlitz) oraz Czech (Liberec, Praga).</li>
+                <li><strong>Standard VIP:</strong> Luksusowe Mercedesy (26 os.) idealne na delegacje biznesowe i wyjazdy zarządów.</li>
+                <li><strong>Pełna dyspozycyjność:</strong> Reagujemy na nagłe potrzeby transportowe 24/7.</li>
+            </ul>
+        </div>
+
+        <section class="szczegolowa-oferta">
+            <h3>Usługi dla firm i mieszkańców Bogatyni</h3>
+            <div class="oferta-artykul-grid">
+                <div class="oferta-item">
+                    <h4><i class="icon-briefcase"></i> Transport dla sektora energetycznego</h4>
+                    <p>Oferujemy bezpieczny i punktualny dowóz pracowników do Elektrowni Turów oraz KWB Turów. Dysponujemy flotą, która poradzi sobie z transportem nawet kilkuset osób dziennie w systemie zmianowym.</p>
+                </div>
+                <div class="oferta-item">
+                    <h4><i class="icon-direction"></i> Wycieczki zagraniczne "Trzy Styki"</h4>
+                    <p>Dzięki lokalizacji Bogatyni, realizujemy mnóstwo wyjazdów międzynarodowych. Zabierzemy Twoją grupę na narty w czeskie Izery lub na zakupy i zwiedzanie do saskich miast.</p>
+                </div>
+                <div class="oferta-item">
+                    <h4><i class="icon-school"></i> Wyjazdy szkolne z Bogatyni</h4>
+                    <p>Zapewniamy nowoczesne autokary Scania dla szkół z Bogatyni i okolic (Opolno Zdrój, Porajów). Wszystkie pojazdy posiadają pasy bezpieczeństwa i są przygotowane na długie trasy edukacyjne.</p>
+                </div>
+                <div class="oferta-item podsumowanie">
+                    <p>Bogatynia stawia na rzetelność. Pas-Trans to gwarancja usług na najwyższym europejskim poziomie. Skontaktuj się z nami po wycenę.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="container">
+            <h2 class="section-title">Częste pytania - Bogatynia</h2>
+            <div class="faq-wrapper">
+                <div class="faq-item">
+                    <button class="faq-question">Czy posiadacie licencję na przewozy międzynarodowe? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Tak, posiadamy pełną licencję na transport drogowy osób w całej Unii Europejskiej. Regularnie obsługujemy trasy z Bogatyni do Czech i Niemiec.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Jak szybko możecie podstawić autokar w Bogatyni? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Dzięki sprawnej logistyce, jesteśmy w stanie podstawić pojazd w Bogatyni w bardzo krótkim czasie od potwierdzenia rezerwacji.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</BaseLayout>

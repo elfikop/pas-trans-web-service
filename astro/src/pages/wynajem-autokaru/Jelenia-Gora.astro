@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+    title="Wynajem Autokarów Jelenia Góra - Przewozy i Transfery | Pas-Trans"
+    description="Szukasz transportu w Jeleniej Górze? Pas-Trans oferuje luksusowe autokary na wycieczki w Karkonosze, transfery lotniskowe oraz obsługę wesel i konferencji. Sprawdź!"
+    canonical="https://autokarypastrans.pl/wynajem-autokaru/Jelenia-Gora.html"
+    ogTitle="Wynajem Autokarów Jelenia Góra - Pas-Trans Marcin Pastuch"
+    ogDescription="Profesjonalny transport turystyczny i biznesowy w Jeleniej Górze. Komfortowe autokary Scania i Mercedes."
+    ogImage="/galeria/hero.webp"
+    ogUrl="https://autokarypastrans.pl/wynajem-autokaru/Jelenia-Gora.html"
+    ogType="website"
+>
+    <Fragment slot="head">
+        <style>
+            .wynajem-content { padding: 60px 0; }
+            .feature-list { list-style: none; padding: 0; margin: 30px 0; }
+            .feature-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.1rem; }
+            .feature-list li::before { content: '✅'; position: absolute; left: 0; top: 0; }
+            .info-box { background: var(--light); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary); margin: 40px 0; }
+        </style>
+    </Fragment>
+
+    <nav id="menu">
+        <div class="container menu-flex">
+            <div id="logo">
+                <a href="/"><img src="/logo.png" alt="Logo Pas-Trans"></a>
+            </div>
+            <button class="menu-toggle" aria-label="Otwórz menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/">STRONA GŁÓWNA</a></li>
+                <li><a href="#oferta-jelenia-gora">OFERTA JELENIA GÓRA</a></li>
+                <li><a href="/aktualnosci/">AKTUALNOŚCI</a></li>
+                <li><a href="/#opinie">OPINIE</a></li>
+                <li><a href="/#galeria-slider">GALERIA</a></li>
+                <li><a href="/rozklad-jazdy/">ROZKŁAD JAZDY</a></li>
+                <li><a href="/nasza-flota/">NASZA FLOTA</a></li>
+                <li><a href="#kontakt">KONTAKT</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header id="hero-subwebsite">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-center-box">
+                    <h1>Wynajem autokarów Jelenia Góra</h1>
+                </div>
+                <div class="hero-breadcrumb">
+                    PAS-TRANS — TWOJA FIRMA TRANSPORTOWA W STOLICY KARKONOSZY
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container wynajem-content">
+        <h2 id="oferta-jelenia-gora" class="section-title">Transport turystyczny i biznesowy w Jeleniej Górze</h2>
+        <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            <strong>Jelenia Góra</strong> to brama do Karkonoszy. Pas-Trans oferuje kompleksową obsługę grup turystycznych, gości hotelowych oraz firm szukających profesjonalnego transportu w regionie jeleniogórskim.
+        </p>
+
+        <div class="info-box">
+            <h3>Dlaczego Jelenia Góra wybiera Pas-Trans?</h3>
+            <ul class="feature-list">
+                <li><strong>Specjaliści od turystyki:</strong> Dowozimy grupy do Karpacza, Szklarskiej Poręby i na zamki Doliny Pałaców i Ogrodów.</li>
+                <li><strong>Transfery lotniskowe:</strong> Szybkie przejazdy na lotniska we Wrocławiu, Pradze oraz Berlinie.</li>
+                <li><strong>Obsługa konferencji:</strong> Eleganckie busy Mercedes (2025!) idealne na eventy w Cieplicach i okolicznych kurortach.</li>
+                <li><strong>Bezpieczne góry:</strong> Doświadczeni kierowcy, którzy doskonale czują się na krętych, górskich trasach.</li>
+            </ul>
+        </div>
+
+        <section class="szczegolowa-oferta">
+            <h3>Oferta dla turystów, szkół i firm z Jeleniej Góry</h3>
+            <div class="oferta-artykul-grid">
+                <div class="oferta-item">
+                    <h4><i class="icon-school"></i> Wycieczki szkolne i przedszkolne</h4>
+                    <p>Obsługujemy jeleniogórskie szkoły, zapewniając bezpieczny dowóz dzieci do teatru, ZOO czy na dłuższe wycieczki szkolne. Wszystkie autokary posiadają pasy bezpieczeństwa i są rygorystycznie serwisowane.</p>
+                </div>
+                <div class="oferta-item">
+                    <h4><i class="icon-heart"></i> Wesela i uroczystości w Cieplicach</h4>
+                    <p>Zapewniamy luksusowy transport gości weselnych do hoteli i domów weselnych w Jeleniej Górze i okolicach. Nasza flota dodaje prestiżu każdej uroczystości.</p>
+                </div>
+                <div class="oferta-item">
+                    <h4><i class="icon-flight"></i> Transfery "Door-to-Airport"</h4>
+                    <p>Organizujesz wyjazd grupowy? Odbierzemy Waszą grupę bezpośrednio z Jeleniej Góry i dowieziemy na terminal lotniska, dbając o punktualność i komfort podróży.</p>
+                </div>
+                <div class="oferta-item podsumowanie">
+                    <p>Jelenia Góra zasługuje na transport klasy premium. Pas-Trans łączy lokalną solidność z nowoczesną flotą pojazdów Scania i Mercedes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="container">
+            <h2 class="section-title">FAQ - Jelenia Góra</h2>
+            <div class="faq-wrapper">
+                <div class="faq-item">
+                    <button class="faq-question">Czy realizujecie wyjazdy do Skalnego Miasta w Czechach? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Tak, wycieczki z Jeleniej Góry do Adršpach czy Teplic nad Metují to jedne z naszych najpopularniejszych tras międzynarodowych.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Jakie są koszty wynajmu autokaru w Jeleniej Górze? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer">
+                        <p>Ceny są ustalane indywidualnie na podstawie trasy i liczby osób. Gwarantujemy uczciwe stawki dopasowane do budżetu szkół i biur podróży.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</BaseLayout>
