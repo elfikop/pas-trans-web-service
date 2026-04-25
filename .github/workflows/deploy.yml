@@ -3,7 +3,7 @@ name: Deploy to home.pl FTP
 on:
   push:
     branches:
-      - main
+      - main  # Zmień na 'master', jeśli tak nazywa się Twoja główna gałąź
 
 jobs:
   web-deploy:
@@ -13,30 +13,25 @@ jobs:
     - name: 🚚 Pobieranie kodu repozytorium
       uses: actions/checkout@v4
 
-    # WYMAGANE: Astro 6 potrzebuje Node 22+
-    - name: 🟢 Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
-
-    # NAPRAWA: 'npm ci' i budowanie z poprawnymi uprawnieniami
-    - name: 🏗️ Instalacja i Budowanie Astro
-      run: |
-        cd astro
-        npm ci
-        npm run build
-
     - name: 📂 Synchronizacja plików przez FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        
+        # Wskazuje folder na serwerze home.pl, do którego trafią pliki.
+        # UWAGA: musi kończyć się ukośnikiem (/). Jeśli wgrywasz do katalogu głównego wpisz /
         local-dir: ./astro/dist/
+
         server-dir: /public_html/
-        # USUWA STARE PLIKI Z SERWERA:
-        dangerous-clean-slate: true 
-        # DODATKOWE PARAMETRY DLA HOME.PL:
-        port: 21
-        protocol: ftps
-        security: loose
+
+        dangerous-clean-slate: true
+        
+        
+        # Opcjonalnie: pliki, których NIE chcesz wysyłać na serwer (odkomentuj, usuwając znak #)
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/.github/**
+          **/README.md
