@@ -13,32 +13,30 @@ jobs:
     - name: 🚚 Pobieranie kodu repozytorium
       uses: actions/checkout@v4
 
-    # KROK 1: Instalacja Node.js (potrzebny do zbudowania Astro)
+    # WYMAGANE: Astro 6 potrzebuje Node 22+
     - name: 🟢 Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 22
 
-    # ROZWIĄZANIE 2: Poprawna instalacja i budowanie
+    # NAPRAWA: 'npm ci' i budowanie z poprawnymi uprawnieniami
     - name: 🏗️ Instalacja i Budowanie Astro
       run: |
         cd astro
-        npm ci  # 'npm ci' jest lepsze do CI/CD niż 'npm install'
+        npm ci
         npm run build
 
-    # KROK 3: Synchronizacja gotowych plików z folderu dist
     - name: 📂 Synchronizacja plików przez FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./astro/dist/
         server-dir: /public_html/
-        # TA LINIA POWODUJE USUNIĘCIE PLIKÓW, KTÓRYCH NIE MA W DIST:
+        # USUWA STARE PLIKI Z SERWERA:
         dangerous-clean-slate: true 
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/.github/**
-          **/README.md
+        # DODATKOWE PARAMETRY DLA HOME.PL:
+        port: 21
+        protocol: ftps
+        security: loose
