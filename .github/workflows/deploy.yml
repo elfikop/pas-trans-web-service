@@ -22,12 +22,9 @@ jobs:
         
         # Wskazuje folder na serwerze home.pl, do którego trafią pliki.
         # UWAGA: musi kończyć się ukośnikiem (/). Jeśli wgrywasz do katalogu głównego wpisz /
-        local-dir: ./astro/dist/
-
         server-dir: /public_html/
 
-        dangerous-clean-slate: true
-        
+        local-dir: ./astro/dist/
         
         # Opcjonalnie: pliki, których NIE chcesz wysyłać na serwer (odkomentuj, usuwając znak #)
         exclude: |
