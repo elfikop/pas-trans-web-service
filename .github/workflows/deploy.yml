@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # Zmień na 'master', jeśli tak nazywa się Twoja główna gałąź
+              
 
 jobs:
   web-deploy:
