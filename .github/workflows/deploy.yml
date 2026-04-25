@@ -33,13 +33,10 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        
-        # Wskazujemy nowy folder, w którym Astro generuje gotową stronę:
         local-dir: ./astro/dist/
-        
-        # Upewnij się, że /public_html/ to właściwy folder na Twoim serwerze FTP
         server-dir: /public_html/
-        
+        # TA LINIA POWODUJE USUNIĘCIE PLIKÓW, KTÓRYCH NIE MA W DIST:
+        dangerous-clean-slate: true 
         exclude: |
           **/.git*
           **/.git*/**
