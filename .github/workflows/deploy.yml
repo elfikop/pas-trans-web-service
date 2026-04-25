@@ -19,6 +19,9 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        protocol: ftps # Home.pl preferuje bezpieczne połączenie
+        security: loose # Ignoruje problemy z certyfikatem home.pl
         
         # Wskazuje folder na serwerze home.pl, do którego trafią pliki.
         # UWAGA: musi kończyć się ukośnikiem (/). Jeśli wgrywasz do katalogu głównego wpisz /
