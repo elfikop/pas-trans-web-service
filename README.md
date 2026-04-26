@@ -15,9 +15,9 @@ Serwis został zaprojektowany jako kompleksowa wizytówka firmy, oferująca info
 
 ---
 
-## 🛠 Tech Stack i Integracje
+##  Tech Stack i Integracje
 
-* **Framework / SSG:** [Astro](https://astro.build/) - generowanie szybkich stron statycznych (Static Site Generation), optymalizacja ładowania i architektura komponentowa.
+* **Framework / SSG:** [Astro](https://astro.build/) - generowanie szybkich stron statycznych (Static Site Generation), optymalizacja ładowania i architektura komponent]owa.
 * **Technologie bazowe:** HTML5 (semantyczny), CSS3 (Zmienne CSS, Flexbox/Grid, animacje), JavaScript (ES6+ Vanilla JS).
 * **CI/CD:** GitHub Actions (automatyczny deploy FTP).
 * **Narzędzia zewnętrzne:** * Google Tag Manager (ID: G-PV4Y1JJETK) i Google Analytics.
@@ -73,12 +73,8 @@ Choć kod źródłowy opiera się o nowoczesne środowisko Astro, utrzymuje logi
 │   └── styles/style.css   # Arkusz stylów (zmienne globalne CSS, Flexbox/Grid, animacje)
 ├── astro.config.mjs       # Konfiguracja Astro (m.in. integracja sitemap)
 └── deploy.yml             # Skrypt wdrożeniowy GitHub Actions
-Informacje prawne
+**Informacje prawne**
 
-Wszystkie treści zamieszczone w serwisie, w tym zdjęcia floty i znaki graficzne, podlegają ochronie prawnej i należą do właściciela firmy Pas-Trans. Szczegółowe zasady korzystania z usług określa dołączony regulamin w formacie PDF.
+* Wszystkie treści zamieszczone w serwisie, w tym zdjęcia floty i znaki graficzne, podlegają ochronie prawnej i należą do właściciela firmy Pas-Trans. Szczegółowe zasady korzystania z usług określa dołączony regulamin w formacie PDF.
 
-Copyright 2026 Pas-Trans Marcin Pastuch. Projekt i realizacja: matrixdesigndub.
-
-Wszystkie treści zamieszczone w serwisie, w tym zdjęcia floty i znaki graficzne, podlegają ochronie prawnej i należą do właściciela firmy Pas-Trans. Szczegółowe zasady korzystania z usług określa dołączony regulamin w formacie PDF.
-
-Copyright 2026 Pas-Trans Marcin Pastuch. Projekt i realizacja: matrixdesigndub.
+**Copyright 2026 Pas-Trans Marcin Pastuch. Projekt i realizacja: Seweryn Pastuch/elfikop**
