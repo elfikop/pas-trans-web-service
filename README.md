@@ -6,12 +6,12 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 ![SEO](https://img.shields.io/badge/SEO-Optimized-success?style=for-the-badge)
 
-## 📌 O projekcie
+##  O projekcie
 **Pas-Trans Web Service** to nowoczesna witryna internetowa zrealizowana dla firmy transportowej Pas-Trans Marcin Pastuch, działającej w Gryfowie Śląskim i na terenie całego Dolnego Śląska. 
 
 Serwis został zaprojektowany jako kompleksowa wizytówka firmy, oferująca informacje o flocie, aktualnych rozkładach jazdy oraz możliwościach kontaktu dla klientów indywidualnych i biznesowych. Jako twórca postawiłem na maksymalną wydajność (SSG), doskonałe wskaźniki Core Web Vitals oraz pełną automatyzację procesu wdrażania (CI/CD).
 
-🌍 **Live demo:** [autokarypastrans.pl](https://autokarypastrans.pl)
+ **Live demo:** [autokarypastrans.pl](https://autokarypastrans.pl)
 
 ---
 
@@ -27,24 +27,30 @@ Serwis został zaprojektowany jako kompleksowa wizytówka firmy, oferująca info
 
 ---
 
-## 💻 Kluczowe funkcjonalności i moje umiejętności (Dla Rekruterów)
+##  Kluczowe funkcjonalności oraz implementacje
 
 Projekt udowadnia moją zdolność łączenia celów biznesowych z nowoczesnymi rozwiązaniami inżynieryjnymi:
 
-1. **Architektura Komponentowa i SSG (Astro):** Strona główna (zawierająca sekcje: Hero, Opinie, Oferta, Galeria, O nas oraz Kontakt) została podzielona na reużywalne komponenty. Dodatkowo zaimplementowałem dedykowane, generowane statycznie landing page'e dla poszczególnych miast (np. `Boleslawiec.astro`, `Zgorzelec.astro`), co maksymalizuje widoczność w lokalnych wynikach wyszukiwania.
+1. **Architektura Komponentowa i SSG (Astro):** Strona główna (zawierająca sekcje: Hero, Opinie, Oferta, Galeria, O nas oraz Kontakt) została podzielona na komponenty. Dodatkowo zaimplementowałem dedykowane, generowane statycznie landing page'e dla poszczególnych miast (np. `Boleslawiec.astro`, `Zgorzelec.astro`), co maksymalizuje widoczność w lokalnych wynikach wyszukiwania.
 2. **Autorskie rozwiązania UI/UX (Vanilla JS):**
    * **Interaktywny Slider:** Stworzony od zera mechanizm prezentacji floty z obsługą płynnych animacji przejść i nawigacją kropkową.
    * **Floating Phone (Pełna responsywność):** Inteligentny przycisk połączenia telefonicznego. Na urządzeniach mobilnych działa jako szybkie wywołanie numeru, a na komputerach desktopowych płynnie przewija (smooth scroll) do sekcji kontaktowej.
 3. **Dynamiczne ładowanie treści (Fetch API):**
    Sekcja "Aktualności" wykorzystuje asynchroniczne pobieranie danych (Fetch API) z zewnętrznych plików HTML, co pozwala na dynamiczne odświeżanie treści bez przeładowywania całej witryny.
 4. **Zaawansowane SEO (Metatagi i Schema.org):**
-   Wykorzystałem metatagi Open Graph oraz dane strukturalne JSON-LD typu `BusReservationService`, co bezpośrednio ułatwia wyszukiwarkom poprawne klasyfikowanie lokalnych usług transportowych firmy.
+   Wykorzystałem metatagi Open Graph oraz dane strukturalne JSON-LD typu `BusReservationService`, co bezpośrednio ułatwia wyszukiwarkom poprawne klasyfikowanie lokalnych usług transportowych firmy. Zajmuję się również indeksowaniem stron w `Google Search Console` oraz optymalizacją strony dla robotów Google.
 5. **Automatyzacja CI/CD:**
    Konfiguracja przepływu pracy w GitHub Actions (`deploy.yml`). Każdy kod włączony do gałęzi `main` jest automatycznie budowany i bezpiecznie wysyłany na serwer produkcyjny.
+5. **Opracowanie systemu zarządzania Cookies:**
+   Po wejściu na stronę użytkownik proszony jest o wyrażenie zgody na cookies oraz politykę prywatności. Komponent (`CookieBanner.astro` oraz skrypt `/public/js/script.js`). Pliki Śledzące ruch w witrynie oraz widget opinii Google od Elfsight uruchamiają się jedynie pod warunkiem zakceptowania zgód. Użytkownik równie łatwo ma możliwość wycofania zgody na cookies, co automatycznie usuwa pliki śledzące zapisane w przeglądarce.
+5. **Dług Projektowy:**
+   Projekt Serwisu internetowego w miare tworzenia i poznawania frameworku astro dąży do zminimalizowania długu projektowego który zdecydowanie istniał przed rozpoczęciem refaktoryzacji do astro. W miarę upływu czasu projekt dzieli się na coraz więcej spójnych komponentów identycznych dla każdej z poodston, co ułatwia rozbudowywanie serwisu o nowe treśći.
+5. **Administracja serwerem WWW,Poczty,FTP:**
+   Tworząc serwis interneowy, poza implementacją funkcjonalnośći w kodzie i rozwojem serwisu, zarządzam wspomnianą już wcześniej domeną [autokarypastrans.pl](https://autokarypastrans.pl). Poznałem narzędzia obsługi poczty, przekierowania maili oraz automatyzacji ich wysyłania przez lokalnie napisane programy w python w oparciu o rejestry placówek oświatowych w Polsce w formacie CSV, Obsługa i automatyzacja aktualizowania witryny przez serwer FTP - wspomniana już wcześniej, generowanie certyfikatów SSL, konfiguracja pliku `.htaccess`, Konfiguracja i aktualizacja plików sitemap.
 
 ---
 
-## 🚌 Informacje o flocie i usługach klienta
+##  Informacje o flocie i usługach klienta
 
 Konstrukcja serwisu została dostosowana do prezentacji szerokiego zakresu usług transportowych firmy Pas-Trans:
 * **Wynajem autokarów:** Prezentacja pojazdów marki Scania oraz luksusowych busów Mercedes (do 26 osób).
@@ -53,7 +59,7 @@ Konstrukcja serwisu została dostosowana do prezentacji szerokiego zakresu usłu
 
 ---
 
-## 📂 Architektura Projektu
+##  Architektura Projektu
 
 Choć kod źródłowy opiera się o nowoczesne środowisko Astro, utrzymuje logiczny i przyjazny podział plików:
 
