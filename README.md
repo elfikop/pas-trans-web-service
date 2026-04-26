@@ -1,47 +1,72 @@
-Pas-Trans Web Service 2026
-O projekcie
+# Pas-Trans Web Service 2026
 
-Pas-Trans Web Service to nowoczesna witryna internetowa zrealizowana dla firmy Pas-Trans Marcin Pastuch, świadczącej usługi transportowe i wynajem autokarów w Gryfowie Śląskim oraz na terenie Dolnego Śląska. Serwis został zaprojektowany jako wizytówka firmy, oferująca kompleksowe informacje o flocie, aktualnych rozkładach jazdy oraz możliwościach kontaktu dla klientów indywidualnych i biznesowych.
-Kluczowe cechy i funkcjonalności
+![Astro](https://img.shields.io/badge/Astro-0C1120?style=for-the-badge&logo=astro&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![SEO](https://img.shields.io/badge/SEO-Optimized-success?style=for-the-badge)
 
-    Pełna responsywność (RWD): Strona posiada dedykowane rozwiązania dla urządzeń mobilnych, w tym specjalną nawigację oraz inteligentny przycisk połączenia telefonicznego, który na komputerach stacjonarnych przewija stronę do sekcji kontaktowej.
+## 📌 O projekcie
+**Pas-Trans Web Service** to nowoczesna witryna internetowa zrealizowana dla firmy transportowej Pas-Trans Marcin Pastuch, działającej w Gryfowie Śląskim i na terenie całego Dolnego Śląska. 
 
-    System zarządzania treścią: Integracja z zewnętrznymi usługami takimi jak Elfsight do wyświetlania opinii klientów oraz Google Analytics do monitorowania ruchu.
+Serwis został zaprojektowany jako kompleksowa wizytówka firmy, oferująca informacje o flocie, aktualnych rozkładach jazdy oraz możliwościach kontaktu dla klientów indywidualnych i biznesowych. Jako twórca postawiłem na maksymalną wydajność (SSG), doskonałe wskaźniki Core Web Vitals oraz pełną automatyzację procesu wdrażania (CI/CD).
 
-    Optymalizacja SEO: Wykorzystanie metatagów Open Graph oraz danych strukturalnych JSON-LD typu BusReservationService, co ułatwia indeksowanie firmy w wynikach lokalnych.
+🌍 **Live demo:** [autokarypastrans.pl](https://autokarypastrans.pl)
 
-    Sekcja Aktualności: dynamiczne ładowanie treści z zewnętrznych plików HTML za pomocą technologii Fetch API.
+---
 
-    Interaktywny Slider: Autorski mechanizm prezentacji floty z obsługą animacji przejść i nawigacją kropkową.
+## 🛠 Tech Stack i Integracje
 
-Architektura plików
+* **Framework / SSG:** [Astro](https://astro.build/) - generowanie szybkich stron statycznych (Static Site Generation), optymalizacja ładowania i architektura komponentowa.
+* **Technologie bazowe:** HTML5 (semantyczny), CSS3 (Zmienne CSS, Flexbox/Grid, animacje), JavaScript (ES6+ Vanilla JS).
+* **CI/CD:** GitHub Actions (automatyczny deploy FTP).
+* **Narzędzia zewnętrzne:** * Google Tag Manager (ID: G-PV4Y1JJETK) i Google Analytics.
+  * Elfsight (dynamiczne wyświetlanie opinii Google).
+  * Fontello (dedykowany plik `config.json` z ikonami m.in. telefonu, mapy, Facebooka).
+* **Typografia:** Lato oraz Josefin Sans (Google Fonts).
 
-    index.html: Główna struktura strony zawierająca sekcje: Hero, Opinie, Oferta, Galeria, O nas oraz Kontakt.
+---
 
-    style.css: Kompleksowy arkusz stylów definiujący zmienne globalne (CSS Variables), layout oparty na Flexbox/Grid oraz animacje.
+## 💻 Kluczowe funkcjonalności i moje umiejętności (Dla Rekruterów)
 
-    js/scripts.js: Logika frontendowa odpowiedzialna za menu mobilne, slider, płynne przewijanie oraz dynamiczne pobieranie newsów.
+Projekt udowadnia moją zdolność łączenia celów biznesowych z nowoczesnymi rozwiązaniami inżynieryjnymi:
 
-    config.json: Konfiguracja ikon Fontello używanych w projekcie (m.in. telefon, mapa, Facebook).
+1. **Architektura Komponentowa i SSG (Astro):** Strona główna (zawierająca sekcje: Hero, Opinie, Oferta, Galeria, O nas oraz Kontakt) została podzielona na reużywalne komponenty. Dodatkowo zaimplementowałem dedykowane, generowane statycznie landing page'e dla poszczególnych miast (np. `Boleslawiec.astro`, `Zgorzelec.astro`), co maksymalizuje widoczność w lokalnych wynikach wyszukiwania.
+2. **Autorskie rozwiązania UI/UX (Vanilla JS):**
+   * **Interaktywny Slider:** Stworzony od zera mechanizm prezentacji floty z obsługą płynnych animacji przejść i nawigacją kropkową.
+   * **Floating Phone (Pełna responsywność):** Inteligentny przycisk połączenia telefonicznego. Na urządzeniach mobilnych działa jako szybkie wywołanie numeru, a na komputerach desktopowych płynnie przewija (smooth scroll) do sekcji kontaktowej.
+3. **Dynamiczne ładowanie treści (Fetch API):**
+   Sekcja "Aktualności" wykorzystuje asynchroniczne pobieranie danych (Fetch API) z zewnętrznych plików HTML, co pozwala na dynamiczne odświeżanie treści bez przeładowywania całej witryny.
+4. **Zaawansowane SEO (Metatagi i Schema.org):**
+   Wykorzystałem metatagi Open Graph oraz dane strukturalne JSON-LD typu `BusReservationService`, co bezpośrednio ułatwia wyszukiwarkom poprawne klasyfikowanie lokalnych usług transportowych firmy.
+5. **Automatyzacja CI/CD:**
+   Konfiguracja przepływu pracy w GitHub Actions (`deploy.yml`). Każdy kod włączony do gałęzi `main` jest automatycznie budowany i bezpiecznie wysyłany na serwer produkcyjny.
 
-Informacje o flocie i usługach
+---
 
-Firma oferuje szeroki zakres usług transportowych, w tym:
+## 🚌 Informacje o flocie i usługach klienta
 
-    Wynajem autokarów: Pojazdy marki Scania oraz luksusowe busy Mercedes (do 26 osób).
+Konstrukcja serwisu została dostosowana do prezentacji szerokiego zakresu usług transportowych firmy Pas-Trans:
+* **Wynajem autokarów:** Prezentacja pojazdów marki Scania oraz luksusowych busów Mercedes (do 26 osób).
+* **Przewozy szkolne i pracownicze:** Dedykowana sekcja z systemem pobierania rozkładów jazdy (PDF) dla obsługiwanych linii, m.in. na trasach *Zgorzelec – Lubań – Gryfów Śląski* oraz *Miłoszów – Leśna – Lubań*.
+* **Wypożyczalnia busów:** Moduł informacyjny o wynajmie nowoczesnych pojazdów 9-osobowych (kategoria B).
 
-    Przewozy szkolne i pracownicze: Obsługa regularnych linii na trasach takich jak Zgorzelec – Lubań – Gryfów Śląski oraz Miłoszów – Leśna – Lubań.
+---
 
-    Wypożyczalnia busów: Wynajem nowoczesnych pojazdów 9-osobowych (kategoria B) bez limitu kilometrów.
+## 📂 Architektura Projektu
 
-Dane techniczne i integracje
+Choć kod źródłowy opiera się o nowoczesne środowisko Astro, utrzymuje logiczny i przyjazny podział plików:
 
-    Technologie: HTML5, CSS3, JavaScript (Vanilla JS).
-
-    Fonty: Lato oraz Josefin Sans ładowane z Google Fonts.
-
-    Analityka: Google Tag Manager (ID: G-PV4Y1JJETK).
-
+```text
+├── public/                # Zasoby statyczne (pliki PDF z rozkładami, ikony Fontello config.json)
+│   └── js/scripts.js      # Logika frontendowa (menu mobilne, slider, Fetch API dla newsów)
+├── src/
+│   ├── assets/            # Zoptymalizowane zdjęcia floty (.webp/.jpg)
+│   ├── components/        # Modułowe komponenty interfejsu (.astro)
+│   ├── pages/             # Struktura routingu (index.astro, strony miast dla SEO)
+│   └── styles/style.css   # Arkusz stylów (zmienne globalne CSS, Flexbox/Grid, animacje)
+├── astro.config.mjs       # Konfiguracja Astro (m.in. integracja sitemap)
+└── deploy.yml             # Skrypt wdrożeniowy GitHub Actions
 Informacje prawne
 
 Wszystkie treści zamieszczone w serwisie, w tym zdjęcia floty i znaki graficzne, podlegają ochronie prawnej i należą do właściciela firmy Pas-Trans. Szczegółowe zasady korzystania z usług określa dołączony regulamin w formacie PDF.
