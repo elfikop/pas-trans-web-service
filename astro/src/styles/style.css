@@ -303,7 +303,7 @@ body {
 #hero {
     background: var(--light) url('/funky-lines-1.png');
     background-blend-mode: overlay;
-    padding: 100px 0; /* Więcej oddechu góra/dół */
+    padding: 40px 0 80px; /* Więcej oddechu góra/dół */
 }
 
 .hero-flex {

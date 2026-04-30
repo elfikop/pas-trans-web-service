@@ -1,0 +1,207 @@
+---
+// src/components/CitiesServed.astro
+
+const cityData = [
+    { name: 'Biedrzychowice', filenameKey: 'biedrzychowice', link: '/wynajem-autokaru/Biedrzychowice/' },
+    { name: 'Bogatynia', filenameKey: 'bogatynia', link: '/wynajem-autokaru/Bogatynia/' },
+    { name: 'Bolesławiec', filenameKey: 'boleslawiec', link: '/wynajem-autokaru/Boleslawiec/' },
+    { name: 'Gryfów Śląski', filenameKey: 'gryfow', link: '/wynajem-autokaru/Gryfow-Slaski/' },
+    { name: 'Jelenia Góra', filenameKey: 'jeleniagora', link: '/wynajem-autokaru/Jelenia-Gora/' },
+    { name: 'Lubań', filenameKey: 'luban', link: '/wynajem-autokaru/Luban/' },
+    { name: 'Olszyna', filenameKey: 'olszyna', link: '/wynajem-autokaru/Olszyna/' },
+    { name: 'Sulików', filenameKey: 'sulikow', link: '/wynajem-autokaru/Sulików/' },
+    { name: 'Zgorzelec', filenameKey: 'zgorzelec', link: '/wynajem-autokaru/Zgorzelec/' }
+];
+
+// Pobieramy wszystkie obrazy z folderu (wspiera webp, png, jpg, itp.)
+const imageFiles = import.meta.glob('/src/assets/cities/*.{jpeg,jpg,png,webp}', { eager: true });
+
+// Łączymy dane o miastach z rzeczywistymi plikami obrazków w folderze
+const cities = cityData.map(city => {
+    // Dopasowanie po nazwie pliku (ignoruje wielkość liter i rozszerzenia)
+    const fileKey = Object.keys(imageFiles).find(path => 
+        path.toLowerCase().includes(city.filenameKey.toLowerCase())
+    );
+    const imgModule = fileKey ? imageFiles[fileKey] : null;
+    
+    // Pobranie zoptymalizowanej ścieżki pliku zapewnianej przez Astro
+    const imageSrc = imgModule ? (imgModule as any).default?.src || (imgModule as any).default : '';
+    
+    return { ...city, imageSrc };
+});
+---
+
+<section id="miasta-karuzela" class="container">
+    <h2 class="section-title">Wynajem autokarów – gdzie działamy?</h2>
+    <p class="cities-subtitle">
+        Zapewniamy transport osób z największych miast regionu. Sprawdź szczegóły oferty dla Twojej miejscowości:
+    </p>
+
+    <div class="carousel-container">
+        <div class="carousel-track" id="cities-track">
+            {cities.map((city) => (
+                <a href={city.link} class="city-card">
+                    <div class="city-img-wrapper">
+                        {city.imageSrc ? (
+                            <img src={city.imageSrc} alt={`Wynajem autokarów ${city.name}`} class="city-img" loading="lazy" />
+                        ) : (
+                            <div class="city-img-placeholder">Brak zdjęcia</div>
+                        )}
+                    </div>
+                    <span class="city-title">{city.name}</span>
+                </a>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    /* STYLE KOMPONENTU */
+    #miasta-karuzela {
+        padding: 60px 20px;
+        margin-bottom: 40px;
+        background: var(--white); /* korzysta ze zmiennej CSS, którą posiadasz w bazowym pliku */
+    }
+
+    .cities-subtitle {
+        text-align: center;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto 15px;
+        line-height: 1.6;
+    }
+
+    /* Ukrywa elementy poza krawędzią ekranu */
+    .carousel-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 20px 0; 
+    }
+
+    .carousel-track {
+        display: flex;
+        gap: 30px;
+        will-change: transform; 
+    }
+
+    .city-card {
+        flex: 0 0 280px; /* Stała szerokość karty */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--dark);
+        transition: transform 0.3s ease;
+    }
+
+    .city-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .city-card:hover .city-title {
+        color: var(--primary);
+    }
+
+    .city-img-wrapper {
+        width: 100%;
+        border-radius: 15px; /* Zaokrąglone rogi jak ze zdjęcia */
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+
+    .city-img {
+        display: block;
+        width: 100%;
+        height: 380px; 
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    /* Efekt przybliżenia tła po najechaniu */
+    .city-card:hover .city-img {
+        transform: scale(1.05); 
+    }
+
+    .city-img-placeholder {
+        width: 100%;
+        height: 380px;
+        background: #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+    }
+
+    .city-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease;
+    }
+
+    /* Responsywność */
+    @media (max-width: 1024px) {
+        .city-card { flex: 0 0 240px; }
+        .city-img, .city-img-placeholder { height: 320px; }
+    }
+
+    @media (max-width: 768px) {
+        .city-card { flex: 0 0 220px; }
+        .city-img, .city-img-placeholder { height: 300px; }
+        .carousel-track { gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+        .city-card { flex: 0 0 85vw; } /* Na telefonie zajmuje niemal pełną szerokość */
+        .city-img, .city-img-placeholder { height: 350px; }
+        .carousel-track { gap: 15px; }
+    }
+</style>
+
+<script>
+    // LOGIKA KARUZELI
+    document.addEventListener('DOMContentLoaded', () => {
+        const track = document.getElementById('cities-track');
+        if (!track) return;
+
+        let isTransitioning = false;
+
+        const moveNext = () => {
+            // Blokada powielania animacji
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            const firstCard = track.firstElementChild;
+            if (!firstCard) return;
+
+            // Obliczamy dystans o jaki musi uciec element (szerokość karty + jej margines (gap))
+            const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+            const cardWidth = firstCard.clientWidth; 
+            const moveDistance = cardWidth + gap;
+
+            // Płynne przewinięcie w lewo
+            track.style.transition = 'transform 0.6s ease-in-out';
+            track.style.transform = `translateX(-${moveDistance}px)`;
+
+            // Przechwytujemy moment od razu po skończonej animacji
+            setTimeout(() => {
+                track.style.transition = 'none'; // Odpinamy płynność
+                track.appendChild(firstCard);    // Przerzucamy ukryty klocek fizycznie na koniec toru html
+                track.style.transform = 'translateX(0)'; // Cofamy przesunięcie całego bloku (bez migania)
+                
+                isTransitioning = false;
+            }, 600); // 600ms = 0.6s równe transition z CSS 
+        };
+
+        // Automatyczny ruch co 4 sekundy
+        let sliderInterval = setInterval(moveNext, 2000);
+
+        // Zatrzymujemy karuzelę, jeśli użytkownik zawiesi myszkę na zdjęciu (by mógł łatwo kliknąć w link)
+        track.addEventListener('mouseenter', () => clearInterval(sliderInterval));
+        track.addEventListener('mouseleave', () => {
+            sliderInterval = setInterval(moveNext, 1800);
+        });
+    });
+</script>

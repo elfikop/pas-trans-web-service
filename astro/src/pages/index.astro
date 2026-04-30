@@ -1,4 +1,5 @@
 ---
+import CitiesServed from '../components/CitiesServed.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import { getImage } from 'astro:assets';
@@ -220,44 +221,10 @@ const sliderImages = await Promise.all(
                 <p style="margin-top: 25px; font-style: italic; color: #555;">
                     Zapraszamy do współpracy szkoły, biura podróży, instytucje publiczne oraz klientów indywidualnych. Z Pas-Trans każda podróż staje się przyjemnością.
                 </p>
+                
             </div>
         </div>
     </section>
-
-    <section id="miasta-linki" class="container">
-        <h2 class="section-title">Wynajem autokarów – gdzie działamy?</h2>
-        <p style="text-align: center; margin-bottom: 30px; color: #666;">
-            Zapewniamy transport osób z największych miast regionu. Sprawdź szczegóły oferty dla Twojej miejscowości:
-        </p>
-        
-        <div class="miasta-pills">
-            <a href="/wynajem-autokaru/Biedrzychowice/" class="miasto-pill">
-                <i class="icon-location"></i> Biedrzychowice
-            </a>
-            <a href="/wynajem-autokaru/Bogatynia/" class="miasto-pill">
-                <i class="icon-location"></i> Bogatynia
-            </a>
-            <a href="/wynajem-autokaru/Boleslawiec/" class="miasto-pill">
-                <i class="icon-location"></i> Bolesławiec
-            </a>
-            <a href="/wynajem-autokaru/Gryfow-Slaski/" class="miasto-pill">
-                <i class="icon-location"></i> Gryfów Śląski
-            </a>
-            <a href="/wynajem-autokaru/Jelenia-Gora/" class="miasto-pill">
-                <i class="icon-location"></i> Jelenia Góra
-            </a>
-            <a href="/wynajem-autokaru/Luban/" class="miasto-pill">
-                <i class="icon-location"></i> Lubań
-            </a>
-            <a href="/wynajem-autokaru/Olszyna/" class="miasto-pill">
-                <i class="icon-location"></i> Olszyna
-            </a>
-            <a href="/wynajem-autokaru/Sulików/" class="miasto-pill">
-                <i class="icon-location"></i> Sulików
-            </a>
-            <a href="/wynajem-autokaru/Zgorzelec/" class="miasto-pill">
-                <i class="icon-location"></i> Zgorzelec
-            </a>
-        </div>
+    <CitiesServed />
     </section>
 </BaseLayout>
