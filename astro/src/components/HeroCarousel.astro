@@ -7,7 +7,9 @@ const destinations = [
     { name: 'Kołobrzeg', filenameKey: 'kolobrzeg' },
     { name: 'Budapeszt', filenameKey: 'budapeszt' },
     { name: 'Praga', filenameKey: 'praga' },
-    { name: 'Wrocław', filenameKey: 'wroclaw' }
+    { name: 'Wrocław', filenameKey: 'wroclaw' },
+    { name: 'Wenecja', filenameKey: 'wenecja' },
+    { name: 'Paryż', filenameKey: 'paryz' }
 ];
 
 // Pobieramy wszystkie obrazy z folderu dest/
@@ -43,23 +45,12 @@ const slides = destinations.map(dest => {
 
 <style>
     /* --- GŁÓWNY KONTENER --- */
-   .dest-carousel {
+    .dest-carousel {
         position: relative;
         width: 100%; 
-        max-width: 100%; 
-        
-        /* ELASTYCZNA WYSOKOŚĆ: */
-        height: calc(100vh - 80px); 
-       
+        height: 100%; /* Zajmuje 100% wysokości hero-img (czyli całej sekcji hero) */
         background-color: transparent; 
-        
-        /* TO ROZWIĄZUJE PROBLEM PASKA PRZEWIJANIA */
-        overflow: hidden; /* Przycina wszystko co wystaje poza pudełko (np. cień na dole) */
-        
-        margin: 0 auto;
-        
-        /* Dodajemy margines, żeby zrekompensować obcięty cień - karuzela odetchnie od krawędzi sekcji */
-        margin-bottom: 20px; 
+        margin: 0;
     }
 
     /* --- SLAJDY I PŁYNNE PRZEJŚCIA --- */
@@ -77,20 +68,18 @@ const slides = destinations.map(dest => {
         visibility: visible;
     }
 
-    /* --- KSZTAŁT (IDEALNY, GŁĘBOKI ŁUK) --- */
+    /* --- KSZTAŁT (GŁĘBOKI ŁUK, NIE UCIĘTY) --- */
     .dest-img-mask {
         position: absolute;
         top: 0;
         bottom: 0;
         right: 0; 
-        left: auto;
-        /* NAPRAWA UCIĘCIA: Maska zajmuje teraz całą szerokość kolumny */
-        width: 150%; 
-        /* Promień łuku z prawej krawędzi (100% 50%) wlewający się aż na 85% szerokości w lewo */
-        clip-path: circle(85% at 100% 50%); 
+        left: -20%; /* Rozciągamy maskę mocno w lewo, żeby koło było pełne i wjeżdżało pod tekst */
+        width: 120%; /* Zapas szerokości na narysowanie pełnego, nieuciętego koła */
+        /* Idealnie narysowane koło przyklejone do prawej krawędzi */
+        clip-path: circle(75% at 100% 50%); 
         z-index: 1;
-        border-radius: 25px; 
-        box-shadow: -10px 10px 40px rgba(0,0,0,0.15); 
+        /* Brak cienia! Cień na tak wielkich, absolutnych elementach w połączeniu z flexboxem powoduje overflow */
     }
 
     /* OCHRONA PRZED GLOBALNYM CSS */
@@ -100,17 +89,13 @@ const slides = destinations.map(dest => {
         max-width: none !important;
         max-height: none !important;
         object-fit: cover !important;
-        border-radius: 25px !important;
+        border-radius: 0 !important; /* Przy prawej krawędzi okna jest prosto */
         box-shadow: none !important;
         transform: scale(1.15) !important;
-        transition: transform 6s ease-out !important; /* Płynne, powolne oddalanie */
+        transition: transform 6s ease-out !important; 
     }
 
     .dest-slide.active div.dest-img-mask img.dest-img {
-        transform: scale(1) !important;
-    }
-
-    .dest-carousel:hover div.dest-img-mask img.dest-img {
         transform: scale(1) !important;
     }
 
@@ -122,30 +107,10 @@ const slides = destinations.map(dest => {
         align-items: center;
         justify-content: center;
         color: #777;
-        border-radius: 25px;
     }
-
-    /* --- DOPASOWANIE NA TELEFONY --- */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
         .dest-carousel {
             display: none !important;
-            min-height: 400px;
-            height: 60vh; /* Karuzela zajmie maksymalnie 60% wysokości ekranu użytkownika */
-            min-height: 400px; /* Zabezpieczenie: nigdy nie będzie mniejsza niż 400px */
-            max-height: 550px; /* Zabezpieczenie: nigdy nie przekroczy 550px na gigantycznych monitorach */
-            
-            background-color: transparent; 
-            overflow: visible; 
-            margin: 0 auto;
-        }
-        
-        .dest-img-mask {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Na telefonie łuk "wlewa się" z góry */
-            clip-path: circle(85% at 50% 0%); 
         }
     }
 </style>

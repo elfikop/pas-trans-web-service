@@ -301,33 +301,36 @@ body {
 
 /* --- POPRAWIONA SEKCJA HERO --- */
 #hero {
+    position: relative; 
     background: var(--light) url('/funky-lines-1.png');
     background-blend-mode: overlay;
-    padding: 0; /* Usuwamy sztuczne odstępy spychające przycisk */
-    /* Pełna wysokość ekranu MINUS wysokość Twojego menu (ok. 80px) */
-    height: calc(100vh - 80px);
-    min-height: 500px; /* Zabezpieczenie dla bardzo małych ekranów */
+    /* Gwarantowana wysokość dopasowana do ekranu */
+    min-height: calc(100vh - 80px);
+    padding: 0; 
+    box-sizing: border-box;
     display: flex;
-    align-items: center; /* Bezwzględne centrowanie całej zawartości w pionie */
+    align-items: center; 
+    /* KLUCZ: Ucinamy tylko to, co wychodzi na boki (np. wielki łuk karuzeli) */
+    overflow: hidden;
 }
 
 .hero-flex {
+    position: relative;
     display: flex;
-    flex-wrap: wrap; 
-    align-items: center; /* Trzyma tekst i karuzelę w jednej linii środkowej */
-    justify-content: space-between;
-    gap: 40px;
+    align-items: center; 
     width: 100%;
 }
 
 .hero-text {
+    position: relative;
+    z-index: 2; /* TEKST ZAWSZE NA WIERZCHU */
     flex: 1;
-    min-width: 300px;
-    padding: 20px 0;
+    max-width: 650px; /* Nie pozwala tekstowi uciec na prawo */
+    padding: 40px 0; /* Górny i dolny oddech dla tekstu */
 }
 
 .hero-text h1 {
-    font-size: 3.1rem; /* Wyraźny tytuł */
+    font-size: 3.1rem; 
     line-height: 1.1;
     margin-bottom: 10px;
     font-weight: 700;
@@ -340,7 +343,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Stylizacja listy z "ptaszkami" */
 .hero-text ul {
     list-style: none;
     padding-left: 0;
@@ -362,21 +364,25 @@ body {
     font-size: 1.4rem;
 }
 
-/* Przycisk akcji w Hero */
 .hero-btn {
-    padding: 18px 35px;
+    padding: 16px 30px;
     font-size: 1.1rem;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
     box-shadow: 0 4px 15px rgba(244, 114, 22, 0.3);
+    margin-top: 10px;
+    display: inline-block;
 }
 
-/* --- NAPRAWA ROZJECHANEGO ZDJĘCIA --- */
+/* --- KONTENER NA KARUZELĘ --- */
 .hero-img {
-    flex: 1;
-    min-width: 300px;
-    text-align: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0; /* PRZYKLEJONE DO PRAWEJ ŚCIANY EKRANU */
+    width: 60vw; /* Szerokość 60% całego ekranu */
+    z-index: 0; /* POD TEKSTEM */
 }
 
 .hero-img img {
