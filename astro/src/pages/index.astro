@@ -1,4 +1,6 @@
 ---
+
+import HeroCarousel from '../components/HeroCarousel.astro';
 import CitiesServed from '../components/CitiesServed.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
@@ -102,7 +104,7 @@ const sliderImages = await Promise.all(
                 <a href="#kontakt" class="btn hero-btn">Skontaktuj się z nami</a>
             </div>
             <div class="hero-img">
-                <img src="/galeria/hero.webp" alt="Nasz autokar">
+                <HeroCarousel />
             </div>
         </div>
     </header>

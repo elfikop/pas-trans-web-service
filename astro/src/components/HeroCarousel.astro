@@ -1,0 +1,166 @@
+---
+// src/components/HeroCarousel.astro
+
+const destinations = [
+    { name: 'Kraków', filenameKey: 'krakow' },
+    { name: 'Warszawa', filenameKey: 'warszawa' },
+    { name: 'Kołobrzeg', filenameKey: 'kolobrzeg' },
+    { name: 'Budapeszt', filenameKey: 'budapeszt' },
+    { name: 'Praga', filenameKey: 'praga' },
+    { name: 'Wrocław', filenameKey: 'wroclaw' }
+];
+
+// Pobieramy wszystkie obrazy z folderu dest/
+const imageFiles = import.meta.glob('/src/assets/dest/*.{jpeg,jpg,png,webp}', { eager: true });
+
+// Łączymy dane
+const slides = destinations.map(dest => {
+    const fileKey = Object.keys(imageFiles).find(path => 
+        path.toLowerCase().includes(dest.filenameKey.toLowerCase())
+    );
+    const imgModule = fileKey ? imageFiles[fileKey] : null;
+    const imageSrc = imgModule ? (imgModule as any).default?.src || (imgModule as any).default : '';
+    
+    return { ...dest, imageSrc };
+});
+---
+
+<div class="dest-carousel">
+    {slides.map((slide, index) => (
+        <div class={`dest-slide ${index === 0 ? 'active' : ''}`}>
+            
+            <div class="dest-img-mask">
+                {slide.imageSrc ? (
+                    <img src={slide.imageSrc} alt={`Flota Pas-Trans - ${slide.name}`} class="dest-img" loading={index === 0 ? "eager" : "lazy"} />
+                ) : (
+                    <div class="dest-img-placeholder">Brak zdjęcia</div>
+                )}
+            </div>
+
+        </div>
+    ))}
+</div>
+
+<style>
+    /* --- GŁÓWNY KONTENER --- */
+   .dest-carousel {
+        position: relative;
+        width: 100%; 
+        max-width: 100%; 
+        
+        /* ELASTYCZNA WYSOKOŚĆ: */
+        height: calc(100vh - 80px); 
+       
+        background-color: transparent; 
+        
+        /* TO ROZWIĄZUJE PROBLEM PASKA PRZEWIJANIA */
+        overflow: hidden; /* Przycina wszystko co wystaje poza pudełko (np. cień na dole) */
+        
+        margin: 0 auto;
+        
+        /* Dodajemy margines, żeby zrekompensować obcięty cień - karuzela odetchnie od krawędzi sekcji */
+        margin-bottom: 20px; 
+    }
+
+    /* --- SLAJDY I PŁYNNE PRZEJŚCIA --- */
+    .dest-slide {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+    }
+
+    .dest-slide.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* --- KSZTAŁT (IDEALNY, GŁĘBOKI ŁUK) --- */
+    .dest-img-mask {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0; 
+        left: auto;
+        /* NAPRAWA UCIĘCIA: Maska zajmuje teraz całą szerokość kolumny */
+        width: 150%; 
+        /* Promień łuku z prawej krawędzi (100% 50%) wlewający się aż na 85% szerokości w lewo */
+        clip-path: circle(85% at 100% 50%); 
+        z-index: 1;
+        border-radius: 25px; 
+        box-shadow: -10px 10px 40px rgba(0,0,0,0.15); 
+    }
+
+    /* OCHRONA PRZED GLOBALNYM CSS */
+    div.dest-img-mask img.dest-img {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        border-radius: 25px !important;
+        box-shadow: none !important;
+        transform: scale(1.15) !important;
+        transition: transform 6s ease-out !important; /* Płynne, powolne oddalanie */
+    }
+
+    .dest-slide.active div.dest-img-mask img.dest-img {
+        transform: scale(1) !important;
+    }
+
+    .dest-carousel:hover div.dest-img-mask img.dest-img {
+        transform: scale(1) !important;
+    }
+
+    .dest-img-placeholder {
+        width: 100%;
+        height: 100%;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+        border-radius: 25px;
+    }
+
+    /* --- DOPASOWANIE NA TELEFONY --- */
+    @media (max-width: 768px) {
+        .dest-carousel {
+            display: none !important;
+            min-height: 400px;
+            height: 60vh; /* Karuzela zajmie maksymalnie 60% wysokości ekranu użytkownika */
+            min-height: 400px; /* Zabezpieczenie: nigdy nie będzie mniejsza niż 400px */
+            max-height: 550px; /* Zabezpieczenie: nigdy nie przekroczy 550px na gigantycznych monitorach */
+            
+            background-color: transparent; 
+            overflow: visible; 
+            margin: 0 auto;
+        }
+        
+        .dest-img-mask {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Na telefonie łuk "wlewa się" z góry */
+            clip-path: circle(85% at 50% 0%); 
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.dest-slide');
+        if (slides.length <= 1) return;
+
+        let currentIndex = 0;
+        
+        setInterval(() => {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }, 4500); 
+    });
+</script>

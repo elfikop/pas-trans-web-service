@@ -303,24 +303,31 @@ body {
 #hero {
     background: var(--light) url('/funky-lines-1.png');
     background-blend-mode: overlay;
-    padding: 40px 0 80px; /* Więcej oddechu góra/dół */
+    padding: 0; /* Usuwamy sztuczne odstępy spychające przycisk */
+    /* Pełna wysokość ekranu MINUS wysokość Twojego menu (ok. 80px) */
+    height: calc(100vh - 80px);
+    min-height: 500px; /* Zabezpieczenie dla bardzo małych ekranów */
+    display: flex;
+    align-items: center; /* Bezwzględne centrowanie całej zawartości w pionie */
 }
 
 .hero-flex {
     display: flex;
-    flex-wrap: wrap; /* Pozwala elementom układać się jeden pod drugim na telefonach */
-    align-items: center;
+    flex-wrap: wrap; 
+    align-items: center; /* Trzyma tekst i karuzelę w jednej linii środkowej */
     justify-content: space-between;
     gap: 40px;
+    width: 100%;
 }
 
 .hero-text {
     flex: 1;
     min-width: 300px;
+    padding: 20px 0;
 }
 
 .hero-text h1 {
-    font-size: 3.5rem; /* Wyraźny tytuł */
+    font-size: 3.1rem; /* Wyraźny tytuł */
     line-height: 1.1;
     margin-bottom: 10px;
     font-weight: 700;
@@ -330,19 +337,19 @@ body {
     font-size: 1.8rem;
     font-weight: 400;
     color: #555;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 /* Stylizacja listy z "ptaszkami" */
 .hero-text ul {
     list-style: none;
     padding-left: 0;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .hero-text li {
     font-size: 1.2rem;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
 }
