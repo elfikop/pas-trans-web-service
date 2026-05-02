@@ -87,14 +87,43 @@ const cities = cityData.map(city => {
     }
 
     .city-card {
-        flex: 0 0 280px; /* Stała szerokość karty */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        color: var(--dark);
-        transition: transform 0.3s ease;
+    /* Zamiast flex: 0 0 280px; używamy calc() */
+    /* Zakładamy na start 4 widoczne elementy: (100% - 3 przerwy po 30px) / 4 */
+    flex: 0 0 calc((100% - (3 * 30px)) / 4); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark);
+    transition: transform 0.3s ease;
+}
+
+/* Responsywność - dopasowujemy ilość pokazywanych kart na mniejszych ekranach */
+@media (max-width: 1024px) {
+    .city-card { 
+        /* 3 widoczne elementy, 2 przerwy po 30px */
+        flex: 0 0 calc((100% - (2 * 30px)) / 3); 
     }
+    .city-img, .city-img-placeholder { height: 320px; }
+}
+
+@media (max-width: 768px) {
+    .city-card { 
+        /* 2 widoczne elementy, 1 przerwa po 20px (bo track gap to 20px tutaj) */
+        flex: 0 0 calc((100% - 20px) / 2); 
+    }
+    .city-img, .city-img-placeholder { height: 300px; }
+    .carousel-track { gap: 20px; }
+}
+
+@media (max-width: 480px) {
+    .city-card { 
+        /* 1 widoczny element w 100% (minus drobny margines, jeśli chcesz) */
+        flex: 0 0 100%; 
+    } 
+    .city-img, .city-img-placeholder { height: 350px; }
+    .carousel-track { gap: 15px; }
+}
 
     .city-card:hover {
         transform: translateY(-8px);
