@@ -58,10 +58,9 @@ const cities = cityData.map(city => {
 <style>
     /* STYLE KOMPONENTU */
     #miasta-karuzela {
-        
         padding: 60px 20px;
         margin-bottom: 40px;
-        background: var(--white); /* korzysta ze zmiennej CSS, którą posiadasz w bazowym pliku */
+        background: var(--white);
     }
 
     .cities-subtitle {
@@ -87,43 +86,17 @@ const cities = cityData.map(city => {
     }
 
     .city-card {
-    /* Zamiast flex: 0 0 280px; używamy calc() */
-    /* Zakładamy na start 4 widoczne elementy: (100% - 3 przerwy po 30px) / 4 */
-    flex: 0 0 calc((100% - (3 * 30px)) / 4); 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--dark);
-    transition: transform 0.3s ease;
-}
-
-/* Responsywność - dopasowujemy ilość pokazywanych kart na mniejszych ekranach */
-@media (max-width: 1024px) {
-    .city-card { 
-        /* 3 widoczne elementy, 2 przerwy po 30px */
-        flex: 0 0 calc((100% - (2 * 30px)) / 3); 
+        /* START: 4 widoczne elementy na dużych ekranach */
+        /* (100% minus 3 luki po 30px) podzielone na 4 karty */
+        flex: 0 0 calc((100% - 90px) / 4); 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: var(--dark);
+        transition: transform 0.3s ease;
+        box-sizing: border-box;
     }
-    .city-img, .city-img-placeholder { height: 320px; }
-}
-
-@media (max-width: 768px) {
-    .city-card { 
-        /* 2 widoczne elementy, 1 przerwa po 20px (bo track gap to 20px tutaj) */
-        flex: 0 0 calc((100% - 20px) / 2); 
-    }
-    .city-img, .city-img-placeholder { height: 300px; }
-    .carousel-track { gap: 20px; }
-}
-
-@media (max-width: 480px) {
-    .city-card { 
-        /* 1 widoczny element w 100% (minus drobny margines, jeśli chcesz) */
-        flex: 0 0 100%; 
-    } 
-    .city-img, .city-img-placeholder { height: 350px; }
-    .carousel-track { gap: 15px; }
-}
 
     .city-card:hover {
         transform: translateY(-8px);
@@ -135,7 +108,7 @@ const cities = cityData.map(city => {
 
     .city-img-wrapper {
         width: 100%;
-        border-radius: 15px; /* Zaokrąglone rogi jak ze zdjęcia */
+        border-radius: 15px;
         overflow: hidden;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         margin-bottom: 20px;
@@ -156,7 +129,7 @@ const cities = cityData.map(city => {
 
     .city-img-placeholder {
         width: 100%;
-        height: 380px;
+        height: 340px;
         background: #eee;
         display: flex;
         align-items: center;
@@ -171,22 +144,31 @@ const cities = cityData.map(city => {
         transition: color 0.3s ease;
     }
 
-    /* Responsywność */
+    /* --- RESPONSOCYJNOŚĆ WYMUSZAJĄCA PEŁNE KAFELKI --- */
     @media (max-width: 1024px) {
-        .city-card { flex: 0 0 240px; }
+        .city-card { 
+            /* 3 widoczne elementy, 2 luki po 30px */
+            flex: 0 0 calc((100% - 60px) / 3); 
+        }
         .city-img, .city-img-placeholder { height: 320px; }
     }
 
     @media (max-width: 768px) {
-        .city-card { flex: 0 0 220px; }
-        .city-img, .city-img-placeholder { height: 300px; }
         .carousel-track { gap: 20px; }
+        .city-card { 
+            /* 2 widoczne elementy, 1 luka 20px */
+            flex: 0 0 calc((100% - 20px) / 2); 
+        }
+        .city-img, .city-img-placeholder { height: 300px; }
     }
 
     @media (max-width: 480px) {
-        .city-card { flex: 0 0 85vw; } /* Na telefonie zajmuje niemal pełną szerokość */
-        .city-img, .city-img-placeholder { height: 350px; }
         .carousel-track { gap: 15px; }
+        .city-card { 
+            /* 1 widoczny element w 100% */
+            flex: 0 0 100%; 
+        } 
+        .city-img, .city-img-placeholder { height: 350px; }
     }
 </style>
 
@@ -206,9 +188,10 @@ const cities = cityData.map(city => {
             const firstCard = track.firstElementChild;
             if (!firstCard) return;
 
-            // Obliczamy dystans o jaki musi uciec element (szerokość karty + jej margines (gap))
-            const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-            const cardWidth = firstCard.clientWidth; 
+            // Używamy getBoundingClientRect().width zamiast clientWidth, 
+            // by uwzględnić dziesiętne wymiary po cięciach calc() w CSS
+            const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+            const cardWidth = firstCard.getBoundingClientRect().width; 
             const moveDistance = cardWidth + gap;
 
             // Płynne przewinięcie w lewo
@@ -221,17 +204,20 @@ const cities = cityData.map(city => {
                 track.appendChild(firstCard);    // Przerzucamy ukryty klocek fizycznie na koniec toru html
                 track.style.transform = 'translateX(0)'; // Cofamy przesunięcie całego bloku (bez migania)
                 
-                isTransitioning = false;
+                // Niewielkie opóźnienie przed uwolnieniem blokady zapobiega glichom przy szybkim re-renderze
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 20);
             }, 600); // 600ms = 0.6s równe transition z CSS 
         };
 
-        // Automatyczny ruch co 4 sekundy
+        // Automatyczny ruch co 2 sekundy (według Twojego poprzedniego kodu)
         let sliderInterval = setInterval(moveNext, 2000);
 
         // Zatrzymujemy karuzelę, jeśli użytkownik zawiesi myszkę na zdjęciu (by mógł łatwo kliknąć w link)
         track.addEventListener('mouseenter', () => clearInterval(sliderInterval));
         track.addEventListener('mouseleave', () => {
-            sliderInterval = setInterval(moveNext, 1800);
+            sliderInterval = setInterval(moveNext, 2000);
         });
     });
 </script>
