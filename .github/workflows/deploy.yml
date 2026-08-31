@@ -3,16 +3,28 @@ name: Deploy to home.pl FTP
 on:
   push:
     branches:
-      - main  # Zmień na 'master', jeśli tak nazywa się Twoja główna gałąź
-              
+      - main # Upewnij się, że to nazwa Twojej głównej gałęzi (main lub master)
 
 jobs:
   web-deploy:
     name: Wdrażanie plików
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Pobieranie kodu repozytorium
+    - name: 🚚 Pobieranie kodu
       uses: actions/checkout@v4
+
+    - name: ⚙️ Konfiguracja środowiska Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: 📦 Instalacja zależności
+      working-directory: ./astro
+      run: npm install
+
+    - name: 🏗️ Kompilacja projektu Astro
+      working-directory: ./astro
+      run: npm run build
 
     - name: 📂 Synchronizacja plików przez FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -21,16 +33,10 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
-        protocol: ftps # Home.pl preferuje bezpieczne połączenie
-        security: loose # Ignoruje problemy z certyfikatem home.pl
-        
-        # Wskazuje folder na serwerze home.pl, do którego trafią pliki.
-        # UWAGA: musi kończyć się ukośnikiem (/). Jeśli wgrywasz do katalogu głównego wpisz /
+        protocol: ftps
+        security: loose
         server-dir: /
-
         local-dir: ./astro/dist/
-        
-        # Opcjonalnie: pliki, których NIE chcesz wysyłać na serwer (odkomentuj, usuwając znak #)
         exclude: |
           **/.git*
           **/.git*/**
