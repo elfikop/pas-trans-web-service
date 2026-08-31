@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NavbarArticle from '../../components/NavbarArticle.astro';
+---
+
+<BaseLayout
+    title="Przewozy nad polskie morze - Letnie linie autokarowe | Pas-Trans"
+    description="Regularne wyjazdy nad Bałtyk z Dolnego Śląska. Wtorki i piątki. Bezpośredni dojazd do Świnoujścia, Pobierowa, Kołobrzegu. Rezerwuj bilety!"
+    canonical="https://autokarypastrans.pl/aktualnosci/polskie-morze/"
+    ogTitle="Wakacyjne przewozy nad Bałtyk z Pas-Trans"
+    ogDescription="Zabierzemy Cię spod domu i zawieziemy do ulubionego kurortu. Wsiadasz wieczorem, budzisz się nad morzem!"
+    ogImage="/aktualnosci/galeria/3.webp"
+    ogUrl="https://autokarypastrans.pl/aktualnosci/polskie-morze/"
+    ogType="article"
+>
+    <Fragment slot="head">
+        <link rel="stylesheet" href="/aktualnosci/style.css" type="text/css" />
+        <style>
+            .route-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            .route-table th, .route-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+            .route-table th { background-color: var(--primary); color: white; }
+        </style>
+    </Fragment>
+
+    <NavbarArticle />
+    
+    <header class="article-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/aktualnosci/galeria/3.webp');">
+        <div class="container">
+            <h1>Wakacyjne przewozy nad morze. Wsiadasz wieczorem, budzisz się nad Bałtykiem!</h1>
+            <p>Piasek, który parzy w stopy i szum fal na wyciągnięcie ręki. Ty odpoczywasz, my prowadzimy.</p>
+        </div>
+    </header>
+
+    <main class="container article-content">
+        <article class="seo-text">
+            <h2>Regularne linie nad Bałtyk – bez przesiadek i stresu</h2>
+            <p>Nie musisz siedzieć godzinami za kółkiem, męczyć się z nawigacją czy narzekać na brak klimatyzacji w zatłoczonym pociągu. Oferujemy wygodne, bezpośrednie przewozy autokarowe z Dolnego Śląska prosto do najpopularniejszych nadmorskich kurortów. Odbieramy Cię niemal spod domu i zawozimy na miejsce wypoczynku.</p>
+
+            <h3>Kiedy jeździmy? (Kursy przez całe wakacje)</h3>
+            <table class="route-table">
+                <thead>
+                    <tr>
+                        <th>Kierunek</th>
+                        <th>Dni wyjazdów</th>
+                        <th>Pora dnia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nad morze</strong></td>
+                        <td>Wtorki i Piątki</td>
+                        <td>Wieczór</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Powroty (Dolny Śląsk)</strong></td>
+                        <td>Środy i Soboty</td>
+                        <td>Popołudnie</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Nasze trasy i miejscowości wyjazdowe</h3>
+            <table class="route-table">
+                <thead>
+                    <tr>
+                        <th>Punkt startowy</th>
+                        <th>Trasa przejazdu (m.in.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bogatynia, Zgorzelec</strong></td>
+                        <td>Żagań ➔ Żary ➔ Kożuchów</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Świeradów-Zdrój, Lubań</strong></td>
+                        <td>Gryfów Śląski ➔ Lwówek Śląski ➔ Bolesławiec</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Szklarska Poręba, Jelenia Góra</strong></td>
+                        <td>Jawor ➔ Legnica ➔ Lubin ➔ Zielona Góra</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Gdzie się zatrzymujemy?</h2>
+            <p>Nasze autokary dowiozą Cię tam, gdzie Bałtyk pachnie najmocniej. Dojeżdżamy m.in. do:</p>
+            <ul>
+                <li><strong>Wyspa Wolin i okolice:</strong> Świnoujście, Międzyzdroje, Wisełka.</li>
+                <li><strong>Wybrzeże Zachodnie:</strong> Międzywodzie, Dziwnów, Dziwnówek, Łukęcin, Pobierowo, Rewal, Niechorze, Pogorzelica.</li>
+                <li><strong>Pomorze Środkowe:</strong> Mrzeżyno, Dźwirzyno, Kołobrzeg, Ustronie Morskie, Mielno.</li>
+            </ul>
+
+            <h2>Dlaczego nad morze jeździ się z Pas-Trans?</h2>
+            <div class="benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div class="benefit-card" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #fecb2f;">
+                    <strong>Wydajna klimatyzacja</strong>
+                    <p>Nawet w najgorętsze sierpniowe dni w naszych autokarach podróżuje się rześko i komfortowo.</p>
+                </div>
+                <div class="benefit-card" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #fecb2f;">
+                    <strong>Miejsce na wszystko</strong>
+                    <p>Walizki, parawany, deski do pływania? Nasze obszerne luki bagażowe bez problemu pomieszczą Twój wakacyjny ekwipunek.</p>
+                </div>
+                <div class="benefit-card" style="background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #fecb2f;">
+                    <strong>Brak przesiadek</strong>
+                    <p>Omijamy dworce i targanie bagaży. Wsiadasz do autokaru i wysiadasz w swoim kurorcie – bezpiecznie, dzięki doświadczonym kierowcom.</p>
+                </div>
+            </div>
+
+            <div style="background-color: #f1f8ff; padding: 20px; border-radius: 8px; margin-top: 30px;">
+                <h3 style="margin-top: 0;">A po wakacjach... wracamy do szkoły!</h3>
+                <p>Latem wozimy Was nad morze, a od września wspieramy w dojazdach. Uruchamiamy nowe, częstsze połączenia szkolne na trasach <strong>Gryfów Śląski – Leśna – Lubań</strong> (8 kursów dziennie!) oraz <strong>Zgorzelec – Sulików – Lubań – Gryfów Śląski</strong>. Bilety miesięczne dla uczniów zaczynają się już od 80 zł.</p>
+            </div>
+
+        </article>
+    </main>
+</BaseLayout>
