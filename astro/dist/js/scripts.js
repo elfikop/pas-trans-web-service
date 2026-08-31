@@ -3,7 +3,7 @@
  * Kompleksowa obsługa strony: Menu, Slider, FAQ, Telefon, News, Cookies
  */
 
-// --- 1. OBSŁUGA MENU MOBILNEGO ---
+// --- 1. OBSŁUGA MENU MOBILNEGOas ---
 function initMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
